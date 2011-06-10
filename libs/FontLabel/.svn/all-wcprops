@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel
+END
+FontLabelStringDrawing.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/FontLabelStringDrawing.h
+END
+FontLabel.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/FontLabel.m
+END
+ZAttributedString.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/ZAttributedString.m
+END
+FontLabelStringDrawing.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/FontLabelStringDrawing.m
+END
+ZFont.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/ZFont.h
+END
+FontManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/FontManager.h
+END
+ZAttributedStringPrivate.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/ZAttributedStringPrivate.h
+END
+ZFont.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/ZFont.m
+END
+FontLabel.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/FontLabel.h
+END
+FontManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/FontManager.m
+END
+ZAttributedString.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/FontLabel/ZAttributedString.h
+END

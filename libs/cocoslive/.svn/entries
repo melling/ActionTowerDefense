@@ -1,0 +1,88 @@
+8
+
+dir
+300
+http://bcam@HaikuServe.local/hsi_svn/hsi_gnl/cocosTutorial/TileGame/libs/cocoslive
+http://bcam@HaikuServe.local/hsi_svn/hsi_gnl
+
+
+
+2010-06-23T00:52:29.907588Z
+300
+bcam
+
+
+svn:special svn:externals svn:needs-lock
+
+CLScoreServerRequest.h
+file
+
+
+
+
+2010-05-18T20:51:01.000000Z
+8c997bde943bf650185190829e1d97a5
+2010-06-23T00:52:29.907588Z
+300
+bcam
+
+cocoslive.m
+file
+
+
+
+
+2010-05-18T20:51:01.000000Z
+29d17bc4929d27ce4bbb93f47770aa2b
+2010-06-23T00:52:29.907588Z
+300
+bcam
+
+CLScoreServerPost.m
+file
+
+
+
+
+2010-05-18T20:51:01.000000Z
+424bcc2a4ebc9e7b1746aeea6b109568
+2010-06-23T00:52:29.907588Z
+300
+bcam
+
+CLScoreServerRequest.m
+file
+
+
+
+
+2010-05-18T20:51:01.000000Z
+fe8b41d0e1ea4ee984eb04fdbd78eb37
+2010-06-23T00:52:29.907588Z
+300
+bcam
+
+cocoslive.h
+file
+
+
+
+
+2010-05-18T20:51:01.000000Z
+6b94c6c549aef55b8c182adb4ad8cb26
+2010-06-23T00:52:29.907588Z
+300
+bcam
+
+CLScoreServerPost.h
+file
+
+
+
+
+2010-05-18T20:51:01.000000Z
+522dc11c38e846226e7e247ca80e4ad5
+2010-06-23T00:52:29.907588Z
+300
+bcam
+

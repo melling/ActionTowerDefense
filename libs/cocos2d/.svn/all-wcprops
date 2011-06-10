@@ -1,0 +1,749 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d
+END
+CCInstantAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCInstantAction.m
+END
+CCGrid.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCGrid.h
+END
+CCTextureAtlas.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTextureAtlas.h
+END
+CCProgressTimerActions.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCProgressTimerActions.h
+END
+cocos2d.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/cocos2d.h
+END
+CCPropertyAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPropertyAction.m
+END
+CCCamera.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCCamera.h
+END
+CCTMXTiledMap.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTMXTiledMap.h
+END
+CCTouchDispatcher.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTouchDispatcher.h
+END
+CCGrid.m
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCGrid.m
+END
+CCTextureAtlas.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTextureAtlas.m
+END
+CCTransition.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTransition.h
+END
+CCProgressTimerActions.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCProgressTimerActions.m
+END
+cocos2d.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/cocos2d.m
+END
+CCCamera.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCCamera.m
+END
+CCScene.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCScene.h
+END
+CCTMXTiledMap.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTMXTiledMap.m
+END
+CCTouchDispatcher.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTouchDispatcher.m
+END
+CCSpriteSheet.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCSpriteSheet.h
+END
+CCTransition.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTransition.m
+END
+CCScene.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCScene.m
+END
+CCSpriteSheet.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCSpriteSheet.m
+END
+ccTypes.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/ccTypes.h
+END
+ccConfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/ccConfig.h
+END
+CCTMXXMLParser.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTMXXMLParser.h
+END
+CCDrawingPrimitives.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCDrawingPrimitives.h
+END
+CCTMXXMLParser.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTMXXMLParser.m
+END
+CCDrawingPrimitives.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCDrawingPrimitives.m
+END
+CCTMXObjectGroup.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTMXObjectGroup.h
+END
+CCScheduler.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCScheduler.h
+END
+CCTileMapAtlas.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTileMapAtlas.h
+END
+CCTMXObjectGroup.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTMXObjectGroup.m
+END
+CCGridAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCGridAction.h
+END
+CCScheduler.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCScheduler.m
+END
+CCTextureCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTextureCache.h
+END
+CCTileMapAtlas.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTileMapAtlas.m
+END
+CCGridAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCGridAction.m
+END
+CCBitmapFontAtlas.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCBitmapFontAtlas.h
+END
+CCTextureCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTextureCache.m
+END
+CCBitmapFontAtlas.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCBitmapFontAtlas.m
+END
+CCParticleExamples.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCParticleExamples.h
+END
+CCSpriteFrameCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCSpriteFrameCache.h
+END
+CCTMXLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTMXLayer.h
+END
+CCParticleExamples.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCParticleExamples.m
+END
+CCSpriteFrameCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCSpriteFrameCache.m
+END
+CCTMXLayer.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTMXLayer.m
+END
+CCSpriteFrame.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCSpriteFrame.h
+END
+CCMenuItem.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCMenuItem.h
+END
+CCQuadParticleSystem.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCQuadParticleSystem.h
+END
+ccMacros.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/ccMacros.h
+END
+CCNode.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCNode.h
+END
+CCSpriteFrame.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCSpriteFrame.m
+END
+CCTexture2D.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTexture2D.h
+END
+CCBlockSupport.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCBlockSupport.h
+END
+CCPVRTexture.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPVRTexture.h
+END
+CCMenuItem.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCMenuItem.m
+END
+CCQuadParticleSystem.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCQuadParticleSystem.m
+END
+CCNode.m
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCNode.m
+END
+CCTexture2D.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTexture2D.m
+END
+CCBlockSupport.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCBlockSupport.m
+END
+CCPVRTexture.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPVRTexture.m
+END
+CCPageTurnTransition.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPageTurnTransition.h
+END
+CCRenderTexture.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCRenderTexture.h
+END
+CCGrabber.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCGrabber.h
+END
+CCPageTurnTransition.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPageTurnTransition.m
+END
+CCRenderTexture.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCRenderTexture.m
+END
+CCTiledGridAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTiledGridAction.h
+END
+CCSprite.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCSprite.h
+END
+CCTextureNode.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTextureNode.h
+END
+CCGrabber.m
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCGrabber.m
+END
+CCParallaxNode.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCParallaxNode.h
+END
+CCAtlasNode.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCAtlasNode.h
+END
+CCTiledGridAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTiledGridAction.m
+END
+CCEaseAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCEaseAction.h
+END
+CCSprite.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCSprite.m
+END
+CCTextureNode.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTextureNode.m
+END
+CCAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCAction.h
+END
+CCParallaxNode.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCParallaxNode.m
+END
+CCMotionStreak.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCMotionStreak.h
+END
+CCLabel.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCLabel.h
+END
+CCAtlasNode.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCAtlasNode.m
+END
+CCEaseAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCEaseAction.m
+END
+CCTouchHandler.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTouchHandler.h
+END
+CCPointParticleSystem.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPointParticleSystem.h
+END
+CCIntervalAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCIntervalAction.h
+END
+CCAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCAction.m
+END
+CCMotionStreak.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCMotionStreak.m
+END
+CCLabel.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCLabel.m
+END
+CCProtocols.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCProtocols.h
+END
+CCTouchHandler.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTouchHandler.m
+END
+CCCameraAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCCameraAction.h
+END
+CCIntervalAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCIntervalAction.m
+END
+CCPointParticleSystem.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPointParticleSystem.m
+END
+CCCameraAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCCameraAction.m
+END
+CCTouchDelegateProtocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCTouchDelegateProtocol.h
+END
+CCMenu.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCMenu.h
+END
+CCLabelAtlas.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCLabelAtlas.h
+END
+CCProgressTimer.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCProgressTimer.h
+END
+CCConfiguration.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCConfiguration.h
+END
+CCRadialTransition.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCRadialTransition.h
+END
+CCParticleSystem.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCParticleSystem.h
+END
+CCActionManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCActionManager.h
+END
+CCMenu.m
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCMenu.m
+END
+CCLabelAtlas.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCLabelAtlas.m
+END
+CCCompatibility.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCCompatibility.h
+END
+CCPageTurn3DAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPageTurn3DAction.h
+END
+CCGrid3DAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCGrid3DAction.h
+END
+CCProgressTimer.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCProgressTimer.m
+END
+CCDirector.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCDirector.h
+END
+CCRibbon.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCRibbon.h
+END
+CCLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCLayer.h
+END
+CCConfiguration.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCConfiguration.m
+END
+CCRadialTransition.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCRadialTransition.m
+END
+CCParticleSystem.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCParticleSystem.m
+END
+CCActionManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCActionManager.m
+END
+CCInstantAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCInstantAction.h
+END
+CCCompatibility.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCCompatibility.m
+END
+CCPageTurn3DAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPageTurn3DAction.m
+END
+CCGrid3DAction.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCGrid3DAction.m
+END
+CCDirector.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCDirector.m
+END
+CCRibbon.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCRibbon.m
+END
+CCLayer.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCLayer.m
+END
+ccExceptions.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/ccExceptions.h
+END
+CCPropertyAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/hsi_svn/hsi_gnl/!svn/ver/300/cocosTutorial/TileGame/libs/cocos2d/CCPropertyAction.h
+END
