@@ -213,6 +213,10 @@
 		50F414F01069373D002A0D5E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F414EC1069373D002A0D5E /* Default.png */; };
 		50F414F11069373D002A0D5E /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F414ED1069373D002A0D5E /* fps_images.png */; };
 		50F414F21069373D002A0D5E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F414EE1069373D002A0D5E /* Icon.png */; };
+		7818D45113A276E300D06D48 /* build-button-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7818D45013A276E300D06D48 /* build-button-off.png */; };
+		7818D45413A276ED00D06D48 /* build-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7818D45313A276EC00D06D48 /* build-button-on.png */; };
+		7818D45613A276FF00D06D48 /* move-button-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7818D45513A276FF00D06D48 /* move-button-off.png */; };
+		7818D45813A2770700D06D48 /* move-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7818D45713A2770700D06D48 /* move-button-on.png */; };
 		82065FFA11C2F660007C230C /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 82065FF911C2F660007C230C /* Projectile.png */; };
 		8206600D11C2F9C7007C230C /* projectile-button-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8206600B11C2F9C7007C230C /* projectile-button-off.png */; };
 		8206600E11C2F9C7007C230C /* projectile-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8206600C11C2F9C7007C230C /* projectile-button-on.png */; };
@@ -444,6 +448,10 @@
 		50F414ED1069373D002A0D5E /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		50F414EE1069373D002A0D5E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		50F414EF1069373D002A0D5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7818D45013A276E300D06D48 /* build-button-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-button-off.png"; sourceTree = "<group>"; };
+		7818D45313A276EC00D06D48 /* build-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-button-on.png"; sourceTree = "<group>"; };
+		7818D45513A276FF00D06D48 /* move-button-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "move-button-off.png"; sourceTree = "<group>"; };
+		7818D45713A2770700D06D48 /* move-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "move-button-on.png"; sourceTree = "<group>"; };
 		82065FF911C2F660007C230C /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
 		8206600B11C2F9C7007C230C /* projectile-button-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile-button-off.png"; sourceTree = "<group>"; };
 		8206600C11C2F9C7007C230C /* projectile-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile-button-on.png"; sourceTree = "<group>"; };
@@ -816,6 +824,10 @@
 		50F414EB1069373D002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7818D45713A2770700D06D48 /* move-button-on.png */,
+				7818D45513A276FF00D06D48 /* move-button-off.png */,
+				7818D45313A276EC00D06D48 /* build-button-on.png */,
+				7818D45013A276E300D06D48 /* build-button-off.png */,
 				8206600B11C2F9C7007C230C /* projectile-button-off.png */,
 				8206600C11C2F9C7007C230C /* projectile-button-on.png */,
 				82065FF911C2F660007C230C /* Projectile.png */,
@@ -988,7 +1000,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TileGame" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1020,6 +1036,10 @@
 				82065FFA11C2F660007C230C /* Projectile.png in Resources */,
 				8206600D11C2F9C7007C230C /* projectile-button-off.png in Resources */,
 				8206600E11C2F9C7007C230C /* projectile-button-on.png in Resources */,
+				7818D45113A276E300D06D48 /* build-button-off.png in Resources */,
+				7818D45413A276ED00D06D48 /* build-button-on.png in Resources */,
+				7818D45613A276FF00D06D48 /* move-button-off.png in Resources */,
+				7818D45813A2770700D06D48 /* move-button-on.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

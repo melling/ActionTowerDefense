@@ -10,42 +10,85 @@
 
 @implementation HelloWorldHud
 @synthesize gameLayer = _gameLayer;
+@synthesize isInMoveMode = _isInMoveMode;
+@synthesize isInProjectileMode = _isInProjectileMode;
+@synthesize isInBuildMode = _isInBuildMode;
 
 -(id) init
 {
     if ((self = [super init])) {
         CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        // Setup score.
         label = [CCLabel labelWithString:@"0" dimensions:CGSizeMake(50, 20) alignment:UITextAlignmentRight fontName:@"Verdana-Bold" fontSize:18.0];
         label.color = ccc3(0,0,0);
         int margin = 10;
         label.position = ccp(winSize.width - (label.contentSize.width/2) - margin, label.contentSize.height/2 + margin);
         [self addChild:label];
-		CCMenuItem *on; 
-		CCMenuItem *off;
-		
-		on = [[CCMenuItemImage itemFromNormalImage:@"projectile-button-on.png" 
+        
+        // Setup projectile button.
+		CCMenuItem *projectileOn = [[CCMenuItemImage itemFromNormalImage:@"projectile-button-on.png" 
 		  selectedImage:@"projectile-button-on.png" target:nil selector:nil] retain];
-		off = [[CCMenuItemImage itemFromNormalImage:@"projectile-button-off.png" 
+		CCMenuItem *projectileOff = [[CCMenuItemImage itemFromNormalImage:@"projectile-button-off.png" 
 		  selectedImage:@"projectile-button-off.png" target:nil selector:nil] retain];
-		
-		CCMenuItemToggle *toggleItem = [CCMenuItemToggle itemWithTarget:self 
-		  selector:@selector(projectileButtonTapped:) items:off, on, nil];
-		CCMenu *toggleMenu = [CCMenu menuWithItems:toggleItem, nil];
-		toggleMenu.position = ccp(100, 32);
-		[self addChild:toggleMenu];
-    }
+		projectileToggleItem = [CCMenuItemToggle itemWithTarget:self 
+		  selector:@selector(projectileButtonTapped:) items:projectileOff, projectileOn, nil];
+        
+        self.isInProjectileMode = YES;
+        projectileToggleItem.selectedIndex = 1;
+    
+        // Setup move button.
+		CCMenuItem *moveOn = [[CCMenuItemImage itemFromNormalImage:@"move-button-on.png" 
+          selectedImage:@"move-button-on.png" target:nil selector:nil] retain];
+		CCMenuItem *moveOff = [[CCMenuItemImage itemFromNormalImage:@"move-button-off.png" 
+          selectedImage:@"move-button-off.png" target:nil selector:nil] retain];
+		moveToggleItem = [CCMenuItemToggle itemWithTarget:self 
+          selector:@selector(moveButtonTapped:) items:moveOff, moveOn, nil];
+             
+        // Setup build button.
+		CCMenuItem *buildOn = [[CCMenuItemImage itemFromNormalImage:@"build-button-on.png" 
+                                                     selectedImage:@"build-button-on.png" target:nil selector:nil] retain];
+		CCMenuItem *buildOff = [[CCMenuItemImage itemFromNormalImage:@"build-button-off.png" 
+                                                      selectedImage:@"build-button-off.png" target:nil selector:nil] retain];
+		buildToggleItem = [CCMenuItemToggle itemWithTarget:self 
+                                                                   selector:@selector(buildButtonTapped:) items:buildOff, buildOn, nil];
+
+        CCMenu *toggleMenu = [CCMenu menuWithItems:projectileToggleItem, moveToggleItem, buildToggleItem, nil];
+        [toggleMenu alignItemsHorizontally];
+		toggleMenu.position = ccp(150, 25);
+		[self addChild:toggleMenu];    
+     }
     return self;
 }
 
-//mode 0 = moving mode
-//mode 1 = ninja star throwing mode
 - (void)projectileButtonTapped:(id)sender
 {
-    if (_gameLayer.mode == 1){
-		_gameLayer.mode = 0;
-	}else{
-		_gameLayer.mode = 1;
-	}
+    self.isInMoveMode = NO;
+    self.isInProjectileMode = YES;
+    self.isInBuildMode = NO;
+    buildToggleItem.selectedIndex = 0;
+    projectileToggleItem.selectedIndex = 1;
+    moveToggleItem.selectedIndex = 0;
+}
+
+- (void)buildButtonTapped:(id)sender
+{
+    self.isInMoveMode = NO;
+    self.isInProjectileMode = NO;
+    self.isInBuildMode = YES;
+    buildToggleItem.selectedIndex = 1;
+    projectileToggleItem.selectedIndex = 0;
+    moveToggleItem.selectedIndex = 0;
+}
+
+- (void)moveButtonTapped:(id)sender
+{
+    self.isInMoveMode = YES;
+    self.isInProjectileMode = NO;
+    self.isInBuildMode = NO;
+    buildToggleItem.selectedIndex = 0;
+    projectileToggleItem.selectedIndex = 0;
+    moveToggleItem.selectedIndex = 1;
 }
 
 - (void)numCollectedChanged:(int)numCollected {
@@ -63,7 +106,6 @@
 @synthesize player = _player;
 @synthesize numCollected = _numCollected;
 @synthesize hud = _hud;
-@synthesize mode = _mode;
 
 +(id) scene
 {
@@ -224,7 +266,6 @@ NSLog(@"%@", enemy);
         self.foreground = [_tileMap layerNamed:@"Foreground"];
         self.meta = [_tileMap layerNamed:@"Meta"];
         _meta.visible = NO;
-		_mode = 0;
 
         // Find spawn point x,y coordinates
         CCTMXObjectGroup *objects = [_tileMap objectGroupNamed:@"Objects"];
@@ -317,7 +358,7 @@ NSLog(@"%@", enemy);
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	if (_mode == 0)
+	if ( _hud.isInMoveMode )
 	{
 		CGPoint touchLocation = [touch locationInView: [touch view]];		
 		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];

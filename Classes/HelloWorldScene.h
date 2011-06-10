@@ -7,9 +7,20 @@
 {   
     CCLabel *label;
 	HelloWorld *_gameLayer;
+    
+    CCMenuItemToggle *buildToggleItem;
+    CCMenuItemToggle *moveToggleItem;
+    CCMenuItemToggle *projectileToggleItem;
+    
+    BOOL _isInMoveMode;
+    BOOL _isInProjectileMode;
+    BOOL _isInBuildMode;
 }
 
 @property (nonatomic, retain) HelloWorld *gameLayer;
+@property (nonatomic, assign) BOOL isInMoveMode;
+@property (nonatomic, assign) BOOL isInProjectileMode;
+@property (nonatomic, assign) BOOL isInBuildMode;
 
 - (void)numCollectedChanged:(int)numCollected;
 @end
@@ -24,7 +35,7 @@
     CCSprite *_player;
     int _numCollected;
     HelloWorldHud *_hud;
-	int _mode;
+    
 	NSMutableArray *_enemies;
 	NSMutableArray *_projectiles;
 }
@@ -35,7 +46,6 @@
 @property (nonatomic, retain) CCTMXLayer *meta;
 @property (nonatomic, retain) CCSprite *player;
 @property (nonatomic, assign) int numCollected;
-@property (nonatomic, assign) int mode;
 @property (nonatomic, retain) HelloWorldHud *hud;
 
 // returns a Scene that contains the HelloWorld as the only child
