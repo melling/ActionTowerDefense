@@ -383,7 +383,7 @@ NSLog(@"%@", enemy);
 		[self setPlayerPosition:playerPos];
 		
 		[self setViewpointCenter:_player.position];
-	} else {
+	} else if ( _hud.isInProjectileMode ) {
 		// Find where the touch is
 		CGPoint touchLocation = [touch locationInView: [touch view]];		
 		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
@@ -421,7 +421,18 @@ NSLog(@"%@", enemy);
 			selector:@selector(projectileMoveFinished:)];
 		[projectile runAction:[CCSequence actionOne:[CCMoveTo actionWithDuration:realMoveDuration position:realDest] two: actionMoveDone]];
 		[_projectiles addObject:projectile];
-	}
+	} else if ( _hud.isInBuildMode ) {
+        
+        // Find where the touch is
+		CGPoint touchLocation = [touch locationInView: [touch view]];		
+		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+		touchLocation = [self convertToNodeSpace:touchLocation]; 
+        
+        CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
+        [_foreground setTileGID:36 at:tileCoord];
+        [_meta setTileGID:49 at:tileCoord];
+        
+    }
     
 }
 
