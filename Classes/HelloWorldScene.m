@@ -429,8 +429,8 @@ NSLog(@"%@", enemy);
 		touchLocation = [self convertToNodeSpace:touchLocation]; 
         
         CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
-        [_foreground setTileGID:36 at:tileCoord];
-        [_meta setTileGID:49 at:tileCoord];
+        [_foreground setTileGID:51 at:tileCoord];
+        [_meta setTileGID:57 at:tileCoord];
         
     }
     
