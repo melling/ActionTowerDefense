@@ -13,6 +13,8 @@
 @synthesize isInMoveMode = _isInMoveMode;
 @synthesize isInProjectileMode = _isInProjectileMode;
 @synthesize isInBuildMode = _isInBuildMode;
+@synthesize isInHoleMode = _isInHoleMode;
+@synthesize isInNetMode = _isInNetMode;
 
 -(id) init
 {
@@ -27,33 +29,44 @@
         [self addChild:label];
         
         // Setup projectile button.
-		CCMenuItem *projectileOn = [[CCMenuItemImage itemFromNormalImage:@"projectile-button-on.png" 
-		  selectedImage:@"projectile-button-on.png" target:nil selector:nil] retain];
-		CCMenuItem *projectileOff = [[CCMenuItemImage itemFromNormalImage:@"projectile-button-off.png" 
-		  selectedImage:@"projectile-button-off.png" target:nil selector:nil] retain];
-		projectileToggleItem = [CCMenuItemToggle itemWithTarget:self 
-		  selector:@selector(projectileButtonTapped:) items:projectileOff, projectileOn, nil];
-        
+		projectileToggleItem = [self 
+                           createToggleItem: @"projectile-button-on.png" 
+                           withOffImageFile: @"projectile-button-off.png"
+                           withCallback: @selector(projectileButtonTapped:)
+                           ];
+
         self.isInProjectileMode = YES;
         projectileToggleItem.selectedIndex = 1;
-    
+        
         // Setup move button.
-		CCMenuItem *moveOn = [[CCMenuItemImage itemFromNormalImage:@"move-button-on.png" 
-          selectedImage:@"move-button-on.png" target:nil selector:nil] retain];
-		CCMenuItem *moveOff = [[CCMenuItemImage itemFromNormalImage:@"move-button-off.png" 
-          selectedImage:@"move-button-off.png" target:nil selector:nil] retain];
-		moveToggleItem = [CCMenuItemToggle itemWithTarget:self 
-          selector:@selector(moveButtonTapped:) items:moveOff, moveOn, nil];
-             
+		moveToggleItem = [self 
+                           createToggleItem: @"move-button-on.png" 
+                           withOffImageFile: @"move-button-off.png"
+                           withCallback: @selector(moveButtonTapped:)
+                           ];
+        
         // Setup build button.
-		CCMenuItem *buildOn = [[CCMenuItemImage itemFromNormalImage:@"build-button-on.png" 
-                                                     selectedImage:@"build-button-on.png" target:nil selector:nil] retain];
-		CCMenuItem *buildOff = [[CCMenuItemImage itemFromNormalImage:@"build-button-off.png" 
-                                                      selectedImage:@"build-button-off.png" target:nil selector:nil] retain];
-		buildToggleItem = [CCMenuItemToggle itemWithTarget:self 
-                                                                   selector:@selector(buildButtonTapped:) items:buildOff, buildOn, nil];
+		buildToggleItem = [self 
+                           createToggleItem: @"build-button-on.png" 
+                           withOffImageFile: @"build-button-off.png"
+                           withCallback: @selector(buildButtonTapped:)
+                           ];
+        
+        // Setup net button.
+		netToggleItem = [self 
+                           createToggleItem: @"net-button-on.png" 
+                           withOffImageFile: @"net-button-off.png"
+                           withCallback: @selector(netButtonTapped:)
+                           ];
+        
+        // Setup hole button.
+		holeToggleItem = [self 
+                           createToggleItem: @"hole-button-on.png" 
+                           withOffImageFile: @"hole-button-off.png"
+                           withCallback: @selector(holeButtonTapped:)
+                           ];
 
-        CCMenu *toggleMenu = [CCMenu menuWithItems:projectileToggleItem, moveToggleItem, buildToggleItem, nil];
+        CCMenu *toggleMenu = [CCMenu menuWithItems:projectileToggleItem, moveToggleItem, buildToggleItem, netToggleItem, holeToggleItem, nil];
         [toggleMenu alignItemsHorizontally];
 		toggleMenu.position = ccp(150, 25);
 		[self addChild:toggleMenu];    
@@ -61,34 +74,64 @@
     return self;
 }
 
-- (void)projectileButtonTapped:(id)sender
+-(CCMenuItemToggle*)createToggleItem:(NSString*)onImageFile withOffImageFile:(NSString*)offImageFile withCallback:(SEL)callback
+{
+    CCMenuItem *buildOn = [[CCMenuItemImage itemFromNormalImage:onImageFile 
+                                                  selectedImage:onImageFile target:nil selector:nil] retain];
+    CCMenuItem *buildOff = [[CCMenuItemImage itemFromNormalImage:offImageFile 
+                                                   selectedImage:offImageFile target:nil selector:nil] retain];
+    CCMenuItemToggle *createdToggleItem = [CCMenuItemToggle itemWithTarget:self 
+                                              selector:callback items:buildOff, buildOn, nil];  
+    return createdToggleItem;
+}
+
+- (void)disableAllToggleButtons
 {
     self.isInMoveMode = NO;
-    self.isInProjectileMode = YES;
+    self.isInProjectileMode = NO;
     self.isInBuildMode = NO;
+    self.isInHoleMode = NO;
+    self.isInNetMode = NO;
     buildToggleItem.selectedIndex = 0;
-    projectileToggleItem.selectedIndex = 1;
+    projectileToggleItem.selectedIndex = 0;
     moveToggleItem.selectedIndex = 0;
+    holeToggleItem.selectedIndex = 0;
+    netToggleItem.selectedIndex = 0;
+}
+
+- (void)projectileButtonTapped:(id)sender
+{
+    [self disableAllToggleButtons];
+    self.isInProjectileMode = YES;
+    projectileToggleItem.selectedIndex = 1;
 }
 
 - (void)buildButtonTapped:(id)sender
 {
-    self.isInMoveMode = NO;
-    self.isInProjectileMode = NO;
+    [self disableAllToggleButtons];
     self.isInBuildMode = YES;
     buildToggleItem.selectedIndex = 1;
-    projectileToggleItem.selectedIndex = 0;
-    moveToggleItem.selectedIndex = 0;
 }
 
 - (void)moveButtonTapped:(id)sender
 {
+    [self disableAllToggleButtons];
     self.isInMoveMode = YES;
-    self.isInProjectileMode = NO;
-    self.isInBuildMode = NO;
-    buildToggleItem.selectedIndex = 0;
-    projectileToggleItem.selectedIndex = 0;
     moveToggleItem.selectedIndex = 1;
+}
+
+- (void)netButtonTapped:(id)sender
+{
+    [self disableAllToggleButtons];
+    self.isInNetMode = YES;
+    netToggleItem.selectedIndex = 1;
+}
+
+- (void)holeButtonTapped:(id)sender
+{
+    [self disableAllToggleButtons];
+    self.isInHoleMode = YES;
+    holeToggleItem.selectedIndex = 1;
 }
 
 - (void)numCollectedChanged:(int)numCollected {
@@ -430,6 +473,28 @@ NSLog(@"%@", enemy);
         
         CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
         [_foreground setTileGID:51 at:tileCoord];
+        [_meta setTileGID:57 at:tileCoord];
+        
+    } else if ( _hud.isInNetMode ) {
+        
+        // Find where the touch is
+		CGPoint touchLocation = [touch locationInView: [touch view]];		
+		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+		touchLocation = [self convertToNodeSpace:touchLocation]; 
+        
+        CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
+        [_foreground setTileGID:49 at:tileCoord];
+        [_meta setTileGID:57 at:tileCoord];
+        
+    } else if ( _hud.isInHoleMode ) {
+        
+        // Find where the touch is
+		CGPoint touchLocation = [touch locationInView: [touch view]];		
+		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+		touchLocation = [self convertToNodeSpace:touchLocation]; 
+        
+        CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
+        [_foreground setTileGID:50 at:tileCoord];
         [_meta setTileGID:57 at:tileCoord];
         
     }
