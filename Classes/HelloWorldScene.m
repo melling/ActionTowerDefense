@@ -202,20 +202,36 @@
 
 -(void)enemyMoveFinished:(id)sender {
 	CCSprite *enemy = (CCSprite *)sender;
-	CGPoint diff = ccpSub(_player.position,enemy.position);
-	float angleRadians = atanf((float)diff.y / (float)diff.x);
-	float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
-	float cocosAngle = -1 * angleDegrees;
-	if (diff.x < 0){
+    
+    // Check enemy type, flying ones rotate to face player.
+    int enemyKind = (int)[(NSNumber *)enemy.userData intValue];
+    if ( enemyKind == 1 ) {
+    
+  	  CGPoint diff = ccpSub(_player.position,enemy.position);
+	  float angleRadians = atanf((float)diff.y / (float)diff.x);
+	  float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
+	  float cocosAngle = -1 * angleDegrees;
+	  if (diff.x < 0){
 		cocosAngle += 180;
-	}
-	enemy.rotation = cocosAngle;
-	[self animateEnemy: enemy]; 
+	  }
+	  enemy.rotation = cocosAngle;
+    // Walking enemies flip horizontally to face player.
+    } else {
+        CGPoint diff = ccpSub(_player.position,enemy.position);
+        if (diff.x < 0){
+            enemy.flipX = NO;
+        } else {
+            enemy.flipX = YES;
+        }        
+    }
+    
+    [self animateEnemy: enemy]; 
 }
 
--(void)addEnemyAtX:(int)x y:(int)y {
-  CCSprite *enemy = [CCSprite spriteWithFile:@"enemy1.png"]; 
+-(void)addEnemyAtX:(int)x y:(int)y kindIndex:(int)kindIndex {
+  CCSprite *enemy = [CCSprite spriteWithFile:[NSString stringWithFormat:@"enemy%d.png", kindIndex]]; 
   enemy.position = ccp(x, y);
+  enemy.userData = [NSNumber numberWithInt:kindIndex];
   [self addChild:enemy];
   [_enemies addObject:enemy];
   [self animateEnemy: enemy]; 
@@ -330,10 +346,11 @@ NSLog(@"%@", enemy);
 		_enemies = [[NSMutableArray alloc] init];
 		_projectiles = [[NSMutableArray alloc] init];
 		for (spawnPoint in [objects objects]) {
-			if ([[spawnPoint valueForKey:@"Enemy"] intValue] == 1){
+            int enemyKind = [[spawnPoint valueForKey:@"Enemy"] intValue];
+			if (enemyKind >= 1){
 				x = [[spawnPoint valueForKey:@"x"] intValue];
 				y = [[spawnPoint valueForKey:@"y"] intValue];
-				[self addEnemyAtX:x y:y];
+				[self addEnemyAtX:x y:y kindIndex:enemyKind];
 			}
 		}
 
@@ -433,7 +450,7 @@ NSLog(@"%@", enemy);
 		touchLocation = [self convertToNodeSpace:touchLocation];
 
 		// Create a projectile and put it at the player's location
-		CCSprite *projectile = [CCSprite spriteWithFile:@"Projectile.png"];
+		CCSprite *projectile = [CCSprite spriteWithFile:@"bullet.png"];
 		projectile.position = _player.position;
 		[self addChild:projectile];
 

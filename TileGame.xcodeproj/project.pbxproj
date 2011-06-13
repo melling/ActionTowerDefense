@@ -221,7 +221,9 @@
 		782800AA13A59F5300AEB9F2 /* hole-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 782800A613A59F5300AEB9F2 /* hole-button-on.png */; };
 		782800AB13A59F5300AEB9F2 /* net-button-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 782800A713A59F5300AEB9F2 /* net-button-off.png */; };
 		782800AC13A59F5300AEB9F2 /* net-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 782800A813A59F5300AEB9F2 /* net-button-on.png */; };
-		82065FFA11C2F660007C230C /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 82065FF911C2F660007C230C /* Projectile.png */; };
+		78A14B1513A6BED9002150C2 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1213A6BED9002150C2 /* bullet.png */; };
+		78A14B1613A6BED9002150C2 /* enemy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1313A6BED9002150C2 /* enemy2.png */; };
+		78A14B1713A6BED9002150C2 /* enemy3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1413A6BED9002150C2 /* enemy3.png */; };
 		8206600D11C2F9C7007C230C /* projectile-button-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8206600B11C2F9C7007C230C /* projectile-button-off.png */; };
 		8206600E11C2F9C7007C230C /* projectile-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8206600C11C2F9C7007C230C /* projectile-button-on.png */; };
 		827A5DA811C17C69009CA65E /* enemy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 827A5DA711C17C69009CA65E /* enemy1.png */; };
@@ -460,7 +462,9 @@
 		782800A613A59F5300AEB9F2 /* hole-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hole-button-on.png"; sourceTree = "<group>"; };
 		782800A713A59F5300AEB9F2 /* net-button-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net-button-off.png"; sourceTree = "<group>"; };
 		782800A813A59F5300AEB9F2 /* net-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net-button-on.png"; sourceTree = "<group>"; };
-		82065FF911C2F660007C230C /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
+		78A14B1213A6BED9002150C2 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
+		78A14B1313A6BED9002150C2 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
+		78A14B1413A6BED9002150C2 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
 		8206600B11C2F9C7007C230C /* projectile-button-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile-button-off.png"; sourceTree = "<group>"; };
 		8206600C11C2F9C7007C230C /* projectile-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile-button-on.png"; sourceTree = "<group>"; };
 		827A5DA711C17C69009CA65E /* enemy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1.png; sourceTree = "<group>"; };
@@ -833,7 +837,9 @@
 			isa = PBXGroup;
 			children = (
 				782800A313A59F0400AEB9F2 /* Buttons */,
-				82065FF911C2F660007C230C /* Projectile.png */,
+				78A14B1213A6BED9002150C2 /* bullet.png */,
+				78A14B1313A6BED9002150C2 /* enemy2.png */,
+				78A14B1413A6BED9002150C2 /* enemy3.png */,
 				827A5DA711C17C69009CA65E /* enemy1.png */,
 				3538C94811A42327002B1239 /* logo16.png */,
 				3590B68111A33F7200E9CBED /* TileMap.tmx */,
@@ -1053,7 +1059,6 @@
 				3590B68211A33F7200E9CBED /* TileMap.tmx in Resources */,
 				3538C94911A42327002B1239 /* logo16.png in Resources */,
 				827A5DA811C17C69009CA65E /* enemy1.png in Resources */,
-				82065FFA11C2F660007C230C /* Projectile.png in Resources */,
 				8206600D11C2F9C7007C230C /* projectile-button-off.png in Resources */,
 				8206600E11C2F9C7007C230C /* projectile-button-on.png in Resources */,
 				7818D45113A276E300D06D48 /* build-button-off.png in Resources */,
@@ -1064,6 +1069,9 @@
 				782800AA13A59F5300AEB9F2 /* hole-button-on.png in Resources */,
 				782800AB13A59F5300AEB9F2 /* net-button-off.png in Resources */,
 				782800AC13A59F5300AEB9F2 /* net-button-on.png in Resources */,
+				78A14B1513A6BED9002150C2 /* bullet.png in Resources */,
+				78A14B1613A6BED9002150C2 /* enemy2.png in Resources */,
+				78A14B1713A6BED9002150C2 /* enemy3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
