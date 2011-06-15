@@ -18,7 +18,7 @@
 
 ** Sprite Animation
 
-  http://getsetgames.com/2010/04/18/how-to-animate-sprites-in-cocos2d/
+    http://getsetgames.com/2010/04/18/how-to-animate-sprites-in-cocos2d/
 
 * Cocos2d URLs
 
