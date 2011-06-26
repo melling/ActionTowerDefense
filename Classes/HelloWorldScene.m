@@ -8,6 +8,10 @@
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
 
+#define kMelonsNeededToWin 2
+
+//TODO code cleanup: separate files for classes, rename classes as needed, enums instead of numbers and multiple bools
+
 @implementation HelloWorldHud
 @synthesize gameLayer = _gameLayer;
 @synthesize isInMoveMode = _isInMoveMode;
@@ -306,6 +310,51 @@ NSLog(@"%@", enemy);
     [self removeChild:projectile cleanup:YES];
   }
   [projectilesToDelete release];
+    
+    
+    NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
+	// iterate through enemies, see if any intersect with hole or net
+    for (CCSprite *target in _enemies) {
+        NSLog(@"enemy");
+        CGRect targetRect = CGRectMake(
+                                       target.position.x - (target.contentSize.width/2), 
+                                       target.position.y - (target.contentSize.height/2), 
+                                       target.contentSize.width, 
+                                       target.contentSize.height);
+              
+        int enemyX = (targetRect.origin.x + targetRect.size.width/2) / _tileMap.tileSize.width;
+        int enemyY = ((_tileMap.mapSize.height * _tileMap.tileSize.height) - (targetRect.origin.y + targetRect.size.height/2)) / _tileMap.tileSize.height;
+        
+        int enemyKind = (int)[(NSNumber *)target.userData intValue];
+        // Flying enemy
+        NSMutableArray* traps= enemyKind == 1 ? _nets : _holes;
+            for (NSValue *trapTileCoordValue in traps) {
+                CGPoint trapTileCoordPoint = [trapTileCoordValue CGPointValue];
+                
+                int trapX = trapTileCoordPoint.x;
+                int trapY = trapTileCoordPoint.y;
+                
+                NSLog([NSString stringWithFormat:@"enemy at %d, %d", enemyX, enemyY]);   
+                NSLog([NSString stringWithFormat:@"trap at %d, %d", trapX, trapY]);    
+                
+                if ( trapX == enemyX && trapY == enemyY ) {
+                    [targetsToDelete addObject:target];    
+                    NSLog(@"flying enemy ran into net");   
+                    break;
+                }
+            }
+        
+    }
+    
+    // delete all trapped enemies
+	for (CCSprite *target in targetsToDelete) {
+        [_enemies removeObject:target];
+        [self removeChild:target cleanup:YES];									
+    }    
+    [targetsToDelete release];
+    
+    
+    
 }
 
 // on "init" you need to initialize your instance
@@ -345,6 +394,8 @@ NSLog(@"%@", enemy);
 		
 		_enemies = [[NSMutableArray alloc] init];
 		_projectiles = [[NSMutableArray alloc] init];
+		_nets = [[NSMutableArray alloc] init];
+		_holes = [[NSMutableArray alloc] init];
 		for (spawnPoint in [objects objects]) {
             int enemyKind = [[spawnPoint valueForKey:@"Enemy"] intValue];
 			if (enemyKind >= 1){
@@ -399,7 +450,7 @@ NSLog(@"%@", enemy);
                 self.numCollected++;
                 [_hud numCollectedChanged:_numCollected];
                 [[SimpleAudioEngine sharedEngine] playEffect:@"pickup.caf"];
-				if (_numCollected == 2){ // put the number of melons on your map in place of the '2'
+				if (_numCollected == kMelonsNeededToWin){
 					[self win];
 				}
             }
@@ -503,6 +554,8 @@ NSLog(@"%@", enemy);
         [_foreground setTileGID:49 at:tileCoord];
         [_meta setTileGID:57 at:tileCoord];
         
+        [_nets addObject:[NSValue valueWithCGPoint:tileCoord]];
+        
     } else if ( _hud.isInHoleMode ) {
         
         // Find where the touch is
@@ -513,6 +566,8 @@ NSLog(@"%@", enemy);
         CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
         [_foreground setTileGID:50 at:tileCoord];
         [_meta setTileGID:57 at:tileCoord];
+        
+        [_holes addObject:[NSValue valueWithCGPoint:tileCoord]];
         
     }
     

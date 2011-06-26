@@ -46,6 +46,8 @@
     
 	NSMutableArray *_enemies;
 	NSMutableArray *_projectiles;
+	NSMutableArray *_holes;
+	NSMutableArray *_nets;
 }
 
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
