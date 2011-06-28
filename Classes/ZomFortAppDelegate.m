@@ -1,16 +1,16 @@
 //
-//  TileGameAppDelegate.m
-//  TileGame
+//  ZomFortAppDelegate.m
+//  ZomFort
 //
-//  Created by Ray Wenderlich on 5/18/10.
-//  Copyright Ray Wenderlich 2010. All rights reserved.
+//  Created by Lance Nanek on 6/28/11.
+//  Copyright h4labs 2011. All rights reserved.
 //
 
-#import "TileGameAppDelegate.h"
+#import "ZomFortAppDelegate.h"
 #import "cocos2d.h"
-#import "HelloWorldScene.h"
+#import "PlayGameWorldLayer.h"
 
-@implementation TileGameAppDelegate
+@implementation ZomFortAppDelegate
 
 @synthesize window;
 
@@ -51,7 +51,7 @@
 	[window makeKeyAndVisible];		
 		
 		
-	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];
+	[[CCDirector sharedDirector] runWithScene: [PlayGameWorldLayer scene]];
 }
 
 

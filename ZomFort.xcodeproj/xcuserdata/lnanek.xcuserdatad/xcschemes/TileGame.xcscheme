@@ -15,8 +15,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "TileGame.app"
-               BlueprintName = "TileGame"
-               ReferencedContainer = "container:TileGame.xcodeproj">
+               BlueprintName = "ZomFort"
+               ReferencedContainer = "container:ZomFort.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,8 +42,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "TileGame.app"
-            BlueprintName = "TileGame"
-            ReferencedContainer = "container:TileGame.xcodeproj">
+            BlueprintName = "ZomFort"
+            ReferencedContainer = "container:ZomFort.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -61,8 +61,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "TileGame.app"
-            BlueprintName = "TileGame"
-            ReferencedContainer = "container:TileGame.xcodeproj">
+            BlueprintName = "ZomFort"
+            ReferencedContainer = "container:ZomFort.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,11 +1,14 @@
 //
-// cocos2d Hello World example
-// http://www.cocos2d-iphone.org
+//  PlayGameWorldLayer.m
+//  ZomFort
+//
+//  Created by Lance Nanek on 6/28/11.
+//  Copyright h4labs 2011. All rights reserved.
 //
 
 // Import the interfaces
-#import "HelloWorld.h"
-#import "HelloWorldHud.h"
+#import "PlayGameWorldLayer.h"
+#import "PlayGameHudLayer.h"
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
 
@@ -13,8 +16,8 @@
 
 //TODO code cleanup: separate files for classes, rename classes as needed, enums instead of numbers and multiple bools
 
-// HelloWorld implementation
-@implementation HelloWorld
+// PlayGameWorldLayer implementation
+@implementation PlayGameWorldLayer
 @synthesize tileMap = _tileMap;
 @synthesize background = _background;
 @synthesize foreground = _foreground;
@@ -29,12 +32,12 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorld *layer = [HelloWorld node];
+	PlayGameWorldLayer *layer = [PlayGameWorldLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
     
-    HelloWorldHud *hud = [HelloWorldHud node];    
+    PlayGameHudLayer *hud = [PlayGameHudLayer node];    
     [scene addChild: hud];
     
     layer.hud = hud;
@@ -184,7 +187,7 @@ NSLog(@"%@", enemy);
     NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
 	// iterate through enemies, see if any intersect with hole or net
     for (CCSprite *target in _enemies) {
-        NSLog(@"enemy");
+        //NSLog(@"enemy");
         CGRect targetRect = CGRectMake(
                                        target.position.x - (target.contentSize.width/2), 
                                        target.position.y - (target.contentSize.height/2), 
@@ -203,12 +206,12 @@ NSLog(@"%@", enemy);
                 int trapX = trapTileCoordPoint.x;
                 int trapY = trapTileCoordPoint.y;
                 
-                NSLog([NSString stringWithFormat:@"enemy at %d, %d", enemyX, enemyY]);   
-                NSLog([NSString stringWithFormat:@"trap at %d, %d", trapX, trapY]);    
+                //NSLog([NSString stringWithFormat:@"enemy at %d, %d", enemyX, enemyY]);   
+                //NSLog([NSString stringWithFormat:@"trap at %d, %d", trapX, trapY]);    
                 
                 if ( trapX == enemyX && trapY == enemyY ) {
                     [targetsToDelete addObject:target];    
-                    NSLog(@"flying enemy ran into net");   
+                    NSLog(@"enemy ran into trap");   
                     break;
                 }
             }

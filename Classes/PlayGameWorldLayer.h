@@ -1,11 +1,17 @@
+//
+//  PlayGameWorldLayer.h
+//  ZomFort
+//
+//  Created by Lance Nanek on 6/28/11.
+//  Copyright h4labs 2011. All rights reserved.
+//
 
-// When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 
-@class HelloWorldHud;
+@class PlayGameHudLayer;
 
-// HelloWorld Layer
-@interface HelloWorld : CCLayer
+// PlayGameWorldLayer Layer
+@interface PlayGameWorldLayer : CCLayer
 {
     CCTMXTiledMap *_tileMap;
     CCTMXLayer *_background;
@@ -13,7 +19,7 @@
     CCTMXLayer *_meta;
     CCSprite *_player;
     int _numCollected;
-    HelloWorldHud *_hud;
+    PlayGameHudLayer *_hud;
     
 	NSMutableArray *_enemies;
 	NSMutableArray *_projectiles;
@@ -27,9 +33,9 @@
 @property (nonatomic, retain) CCTMXLayer *meta;
 @property (nonatomic, retain) CCSprite *player;
 @property (nonatomic, assign) int numCollected;
-@property (nonatomic, retain) HelloWorldHud *hud;
+@property (nonatomic, retain) PlayGameHudLayer *hud;
 
-// returns a Scene that contains the HelloWorld as the only child
+// returns a Scene that contains the PlayGameWorldLayer and PlayGameHudLayer as children
 +(id) scene;
 
 @end

@@ -1,13 +1,19 @@
+//
+//  PlayGameHudLayer.h
+//  ZomFort
+//
+//  Created by Lance Nanek on 6/28/11.
+//  Copyright h4labs 2011. All rights reserved.
+//
 
-// When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 
-@class HelloWorld;
+@class PlayGameGameLayer;
 
-@interface HelloWorldHud : CCLayer
+@interface PlayGameHudLayer : CCLayer
 {   
     CCLabel *label;
-	HelloWorld *_gameLayer;
+	PlayGameGameLayer *_gameLayer;
     
     CCMenuItemToggle *buildToggleItem;
     CCMenuItemToggle *moveToggleItem;
@@ -22,7 +28,7 @@
     BOOL _isInNetMode;
 }
 
-@property (nonatomic, retain) HelloWorld *gameLayer;
+@property (nonatomic, retain) PlayGameGameLayer *gameLayer;
 @property (nonatomic, assign) BOOL isInMoveMode;
 @property (nonatomic, assign) BOOL isInProjectileMode;
 @property (nonatomic, assign) BOOL isInBuildMode;

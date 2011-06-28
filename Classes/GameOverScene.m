@@ -1,13 +1,13 @@
 //
-//  GameOverLoseScene.m
-//  bcamcocos2dtutorial1
+//  GameOverScene.m
+//  ZomFort
 //
-//  Created by bcam2 on 6/9/10.
-//  Copyright 2010 Geek And Dad. All rights reserved.
+//  Created by Lance Nanek on 6/28/11.
+//  Copyright h4labs 2011. All rights reserved.
 //
 
 #import "GameOverScene.h"
-#import "HelloWorldScene.h"
+#import "PlayGameWorldLayer.h"
  
 @implementation GameOverScene
 @synthesize layer = _layer;
@@ -53,7 +53,7 @@
  
 - (void)gameOverDone {
  
-  [[CCDirector sharedDirector] replaceScene:[HelloWorld scene]];
+  [[CCDirector sharedDirector] replaceScene:[PlayGameWorldLayer scene]];
  
 }
  

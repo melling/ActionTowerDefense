@@ -1,11 +1,14 @@
 //
-// cocos2d Hello World example
-// http://www.cocos2d-iphone.org
+//  PlayGameHudLayer.m
+//  ZomFort
+//
+//  Created by Lance Nanek on 6/28/11.
+//  Copyright h4labs 2011. All rights reserved.
 //
 
 // Import the interfaces
-#import "HelloWorld.h"
-#import "HelloWorldHud.h"
+#import "PlayGameWorldLayer.h"
+#import "PlayGameHudLayer.h"
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
 
@@ -13,7 +16,7 @@
 
 //TODO code cleanup: separate files for classes, rename classes as needed, enums instead of numbers and multiple bools
 
-@implementation HelloWorldHud
+@implementation PlayGameHudLayer
 @synthesize gameLayer = _gameLayer;
 @synthesize isInMoveMode = _isInMoveMode;
 @synthesize isInProjectileMode = _isInProjectileMode;
