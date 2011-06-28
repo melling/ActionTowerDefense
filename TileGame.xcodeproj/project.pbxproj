@@ -44,7 +44,6 @@
 		50674855107A3AF30090963A /* ZAttributedStringPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 50674852107A3AF30090963A /* ZAttributedStringPrivate.h */; };
 		506EDB88102F4C4000A389B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 506EDB87102F4C4000A389B3 /* libz.dylib */; };
 		506EDBA5102F4C9F00A389B3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506EDBA4102F4C9F00A389B3 /* AVFoundation.framework */; };
-		506EDC31102F528A00A389B3 /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 506EDC30102F528A00A389B3 /* HelloWorldScene.m */; };
 		506EE1A91030508200A389B3 /* libcocos2d libraries.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 506EE05E10304ED200A389B3 /* libcocos2d libraries.a */; };
 		50D3B09711498A370002F919 /* CCAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D3B00A11498A370002F919 /* CCAction.h */; };
 		50D3B09811498A370002F919 /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3B00B11498A370002F919 /* CCAction.m */; };
@@ -221,6 +220,8 @@
 		782800AA13A59F5300AEB9F2 /* hole-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 782800A613A59F5300AEB9F2 /* hole-button-on.png */; };
 		782800AB13A59F5300AEB9F2 /* net-button-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 782800A713A59F5300AEB9F2 /* net-button-off.png */; };
 		782800AC13A59F5300AEB9F2 /* net-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 782800A813A59F5300AEB9F2 /* net-button-on.png */; };
+		785100F213B9EC0000C97016 /* HelloWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 785100EF13B9EC0000C97016 /* HelloWorld.m */; };
+		785100F313B9EC0000C97016 /* HelloWorldHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 785100F113B9EC0000C97016 /* HelloWorldHud.m */; };
 		78A14B1513A6BED9002150C2 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1213A6BED9002150C2 /* bullet.png */; };
 		78A14B1613A6BED9002150C2 /* enemy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1313A6BED9002150C2 /* enemy2.png */; };
 		78A14B1713A6BED9002150C2 /* enemy3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1413A6BED9002150C2 /* enemy3.png */; };
@@ -283,8 +284,6 @@
 		50674852107A3AF30090963A /* ZAttributedStringPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedStringPrivate.h; sourceTree = "<group>"; };
 		506EDB87102F4C4000A389B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		506EDBA4102F4C9F00A389B3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		506EDC2F102F528A00A389B3 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
-		506EDC30102F528A00A389B3 /* HelloWorldScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldScene.m; sourceTree = "<group>"; };
 		506EE05E10304ED200A389B3 /* libcocos2d libraries.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcocos2d libraries.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D3B00A11498A370002F919 /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		50D3B00B11498A370002F919 /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
@@ -462,6 +461,10 @@
 		782800A613A59F5300AEB9F2 /* hole-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hole-button-on.png"; sourceTree = "<group>"; };
 		782800A713A59F5300AEB9F2 /* net-button-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net-button-off.png"; sourceTree = "<group>"; };
 		782800A813A59F5300AEB9F2 /* net-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net-button-on.png"; sourceTree = "<group>"; };
+		785100EE13B9EC0000C97016 /* HelloWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorld.h; sourceTree = "<group>"; };
+		785100EF13B9EC0000C97016 /* HelloWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorld.m; sourceTree = "<group>"; };
+		785100F013B9EC0000C97016 /* HelloWorldHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldHud.h; sourceTree = "<group>"; };
+		785100F113B9EC0000C97016 /* HelloWorldHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldHud.m; sourceTree = "<group>"; };
 		78A14B1213A6BED9002150C2 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		78A14B1313A6BED9002150C2 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
 		78A14B1413A6BED9002150C2 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
@@ -566,10 +569,12 @@
 		2D500B1D0D5A766B00DBA0E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				785100EE13B9EC0000C97016 /* HelloWorld.h */,
+				785100EF13B9EC0000C97016 /* HelloWorld.m */,
+				785100F013B9EC0000C97016 /* HelloWorldHud.h */,
+				785100F113B9EC0000C97016 /* HelloWorldHud.m */,
 				82FA363711CD94540071117A /* GameOverScene.h */,
 				82FA363811CD94540071117A /* GameOverScene.m */,
-				506EDC2F102F528A00A389B3 /* HelloWorldScene.h */,
-				506EDC30102F528A00A389B3 /* HelloWorldScene.m */,
 				1F3B9A2C0EF2145700286867 /* TileGameAppDelegate.h */,
 				1F3B9A2B0EF2145700286867 /* TileGameAppDelegate.m */,
 			);
@@ -1084,8 +1089,9 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1F3B9A2D0EF2145700286867 /* TileGameAppDelegate.m in Sources */,
-				506EDC31102F528A00A389B3 /* HelloWorldScene.m in Sources */,
 				82FA363911CD94540071117A /* GameOverScene.m in Sources */,
+				785100F213B9EC0000C97016 /* HelloWorld.m in Sources */,
+				785100F313B9EC0000C97016 /* HelloWorldHud.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
