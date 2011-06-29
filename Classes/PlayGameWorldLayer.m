@@ -47,6 +47,12 @@
 	return scene;
 }
 
+- (CGPoint)tileCoordForPosition:(CGPoint)position {
+    int x = position.x / _tileMap.tileSize.width;
+    int y = ((_tileMap.mapSize.height * _tileMap.tileSize.height) - position.y) / _tileMap.tileSize.height;
+    return ccp(x, y);
+}
+
 -(void)setViewpointCenter:(CGPoint) position {
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -69,8 +75,36 @@
   ccTime actualDuration = .1;
  
   // Create the actions
+
+  // Move toward the player
+  CGPoint newPositionDelta = ccpMult(ccpNormalize(ccpSub(_player.position,enemy.position)),5);
+
+  // If this isn't a flying enemy type.
+  int enemyKind = (int)[(NSNumber *)enemy.userData intValue];
+  if ( enemyKind != 1 ) {
+    // If the move is into a collidable, don't move.
+    // TODO later on maybe monsters should be able to break down blocks eventually (make them sand bags or dirt walls?) or path find around them?
+    CGPoint newPosition = ccp(enemy.position.x + newPositionDelta.x, enemy.position.y + newPositionDelta.y);
+    CGPoint tileCoord = [self tileCoordForPosition:newPosition];
+      
+    //  NSLog(@"enemy at: %f , %f", tileCoord.x, tileCoord.y);
+    //  CGPoint tileCoord = ccp(3, 6);
+    if (tileCoord.x < _tileMap.mapSize.width && tileCoord.y < _tileMap.mapSize.height && tileCoord.x >=0 && tileCoord.y >=0 ) {
+        int tileGid = [_meta tileGIDAt:tileCoord];
+        if (tileGid) {
+          NSDictionary *properties = [_tileMap propertiesForGID:tileGid];
+          if (properties) {
+              NSString *collision = [properties valueForKey:@"Collidable"];
+              if (collision && [collision compare:@"True"] == NSOrderedSame) {
+                  newPositionDelta = ccp(0,0);
+              }
+          }
+        }
+    }
+  }
+    
   id actionMove = [CCMoveBy actionWithDuration:actualDuration 
-    position:ccpMult(ccpNormalize(ccpSub(_player.position,enemy.position)),10)];
+    position:newPositionDelta];
   id actionMoveDone = [CCCallFuncN actionWithTarget:self 
     selector:@selector(enemyMoveFinished:)];
   [enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]]; 
@@ -287,12 +321,6 @@ NSLog(@"%@", enemy);
     return self;
 }
 
-- (CGPoint)tileCoordForPosition:(CGPoint)position {
-    int x = position.x / _tileMap.tileSize.width;
-    int y = ((_tileMap.mapSize.height * _tileMap.tileSize.height) - position.y) / _tileMap.tileSize.height;
-    return ccp(x, y);
-}
-
 -(void) registerWithTouchDispatcher
 {
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -457,6 +485,12 @@ NSLog(@"%@", enemy);
     self.meta = nil;
     self.player = nil;
     self.hud = nil;
+    
+    [_enemies release];
+    [_projectiles release];
+    [_nets release];
+    [_holes release];
+    
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }
