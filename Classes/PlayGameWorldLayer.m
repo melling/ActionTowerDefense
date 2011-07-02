@@ -138,14 +138,23 @@
     [self animateEnemy: enemy]; 
 }
 
--(void)addEnemyAtX:(int)x y:(int)y kindIndex:(int)kindIndex {
-  CCSprite *enemy = [CCSprite spriteWithFile:[NSString stringWithFormat:@"enemy%d.png", kindIndex]]; 
+
+-(void)addEnemyAtSpawnPoint:(id)sender data:(id)spawnPoint {
+  int enemyKind = [[spawnPoint valueForKey:@"Enemy"] intValue];
+  if (enemyKind < 1) {
+    return;
+  }
+
+  int x = [[spawnPoint valueForKey:@"x"] intValue];
+  int y = [[spawnPoint valueForKey:@"y"] intValue];
+    
+  CCSprite *enemy = [CCSprite spriteWithFile:[NSString stringWithFormat:@"enemy%d.png", enemyKind]]; 
   enemy.position = ccp(x, y);
-  enemy.userData = [NSNumber numberWithInt:kindIndex];
+  enemy.userData = [NSNumber numberWithInt:enemyKind];
   [self addChild:enemy];
   [_enemies addObject:enemy];
   [self animateEnemy: enemy]; 
-NSLog(@"%@", enemy);
+  NSLog(@"%@", enemy);
 }
 
 - (void)lose {
@@ -303,12 +312,34 @@ NSLog(@"%@", enemy);
 		_nets = [[NSMutableArray alloc] init];
 		_holes = [[NSMutableArray alloc] init];
 		for (spawnPoint in [objects objects]) {
-            int enemyKind = [[spawnPoint valueForKey:@"Enemy"] intValue];
-			if (enemyKind >= 1){
-				x = [[spawnPoint valueForKey:@"x"] intValue];
-				y = [[spawnPoint valueForKey:@"y"] intValue];
-				[self addEnemyAtX:x y:y kindIndex:enemyKind];
-			}
+
+            // Read optional number of enemies to spawn property.
+            int numberOfEnemiesToSpawn = [[spawnPoint valueForKey:@"NumberOfEnemiesToSpawn"] intValue];
+            if ( numberOfEnemiesToSpawn <= 0 ) {
+                // Spawn 1 enemy if nothing set.
+                numberOfEnemiesToSpawn = 1;
+            }
+
+            // Read optional property for how long to wait before spawning each enemy.
+            float SpawnDelaySeconds = [[spawnPoint valueForKey:@"SpawnDelaySeconds"] intValue];
+            if ( SpawnDelaySeconds < 0.0f ) {
+                // Spawn instantly if nothing set.
+                SpawnDelaySeconds = 0.0f;
+            }
+
+            // Action for adding 1 enemy.
+            id actionAddEnemy = [CCCallFuncND actionWithTarget:self
+                                                      selector:@selector(addEnemyAtSpawnPoint:data:) data:spawnPoint];
+            
+            id actionDelay = [CCDelayTime actionWithDuration:SpawnDelaySeconds];
+            
+            id actionAddEnemyDelayed = [CCSequence actions: actionDelay, actionAddEnemy, nil];
+            
+            // Action for adding all enemies specified by this spawn point.
+            id actionAddEnemies = [CCRepeat actionWithAction:actionAddEnemyDelayed times:numberOfEnemiesToSpawn];
+            
+            // Run the action.
+            [_player runAction:actionAddEnemies]; 
 		}
 
         // Center the view on the player (or as close as we can!)

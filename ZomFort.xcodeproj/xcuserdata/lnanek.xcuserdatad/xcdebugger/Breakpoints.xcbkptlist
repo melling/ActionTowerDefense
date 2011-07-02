@@ -93,12 +93,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/PlayGameWorldLayer.m"
-         timestampString = "331014541.278943"
+         timestampString = "331343396.523743"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "339"
-         endingLineNumber = "339"
+         startingLineNumber = "370"
+         endingLineNumber = "370"
          landmarkName = "-setPlayerPosition:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/PlayGameWorldLayer.m"
+         timestampString = "331343396.523743"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "336"
+         endingLineNumber = "336"
+         landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
