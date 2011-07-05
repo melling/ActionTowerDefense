@@ -225,6 +225,8 @@
 		78A14B1513A6BED9002150C2 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1213A6BED9002150C2 /* bullet.png */; };
 		78A14B1613A6BED9002150C2 /* enemy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1313A6BED9002150C2 /* enemy2.png */; };
 		78A14B1713A6BED9002150C2 /* enemy3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1413A6BED9002150C2 /* enemy3.png */; };
+		78B63BD013C3B13000D88149 /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B63BCF13C3B13000D88149 /* Monster.m */; };
+		78B63BD313C3C57900D88149 /* explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 78B63BD213C3C57900D88149 /* explosion.caf */; };
 		8206600D11C2F9C7007C230C /* projectile-button-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8206600B11C2F9C7007C230C /* projectile-button-off.png */; };
 		8206600E11C2F9C7007C230C /* projectile-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8206600C11C2F9C7007C230C /* projectile-button-on.png */; };
 		827A5DA811C17C69009CA65E /* enemy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 827A5DA711C17C69009CA65E /* enemy1.png */; };
@@ -251,7 +253,7 @@
 /* Begin PBXFileReference section */
 		1D6058910D05DD3D006BFB54 /* ZomFort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZomFort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F3B9A2B0EF2145700286867 /* ZomFortAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZomFortAppDelegate.m; path = Classes/ZomFortAppDelegate.m; sourceTree = SOURCE_ROOT; };
-		1F3B9A2C0EF2145700286867 /* ZomFortAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; name = ZomFortAppDelegate.h; path = Classes/ZomFortAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		1F3B9A2C0EF2145700286867 /* ZomFortAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZomFortAppDelegate.h; path = Classes/ZomFortAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		1F3B9A820EF2151B00286867 /* ZomFort_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZomFort_Prefix.pch; path = Users/lnanek/Desktop/code/ActionTowerDefense/ZomFort_Prefix.pch; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3538C94811A42327002B1239 /* logo16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo16.png; sourceTree = "<group>"; };
@@ -461,13 +463,16 @@
 		782800A613A59F5300AEB9F2 /* hole-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hole-button-on.png"; sourceTree = "<group>"; };
 		782800A713A59F5300AEB9F2 /* net-button-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net-button-off.png"; sourceTree = "<group>"; };
 		782800A813A59F5300AEB9F2 /* net-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net-button-on.png"; sourceTree = "<group>"; };
-		785100EE13B9EC0000C97016 /* PlayGameWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PlayGameWorldLayer.h; sourceTree = "<group>"; };
+		785100EE13B9EC0000C97016 /* PlayGameWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayGameWorldLayer.h; sourceTree = "<group>"; };
 		785100EF13B9EC0000C97016 /* PlayGameWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameWorldLayer.m; sourceTree = "<group>"; };
-		785100F013B9EC0000C97016 /* PlayGameHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PlayGameHudLayer.h; sourceTree = "<group>"; };
+		785100F013B9EC0000C97016 /* PlayGameHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayGameHudLayer.h; sourceTree = "<group>"; };
 		785100F113B9EC0000C97016 /* PlayGameHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameHudLayer.m; sourceTree = "<group>"; };
 		78A14B1213A6BED9002150C2 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		78A14B1313A6BED9002150C2 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
 		78A14B1413A6BED9002150C2 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
+		78B63BCE13C3B13000D88149 /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
+		78B63BCF13C3B13000D88149 /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
+		78B63BD213C3C57900D88149 /* explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion.caf; sourceTree = "<group>"; };
 		8206600B11C2F9C7007C230C /* projectile-button-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile-button-off.png"; sourceTree = "<group>"; };
 		8206600C11C2F9C7007C230C /* projectile-button-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile-button-on.png"; sourceTree = "<group>"; };
 		827A5DA711C17C69009CA65E /* enemy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1.png; sourceTree = "<group>"; };
@@ -569,6 +574,8 @@
 		2D500B1D0D5A766B00DBA0E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				78B63BCE13C3B13000D88149 /* Monster.h */,
+				78B63BCF13C3B13000D88149 /* Monster.m */,
 				785100EE13B9EC0000C97016 /* PlayGameWorldLayer.h */,
 				785100EF13B9EC0000C97016 /* PlayGameWorldLayer.m */,
 				785100F013B9EC0000C97016 /* PlayGameHudLayer.h */,
@@ -845,6 +852,7 @@
 				78A14B1213A6BED9002150C2 /* bullet.png */,
 				78A14B1313A6BED9002150C2 /* enemy2.png */,
 				78A14B1413A6BED9002150C2 /* enemy3.png */,
+				78B63BD213C3C57900D88149 /* explosion.caf */,
 				827A5DA711C17C69009CA65E /* enemy1.png */,
 				3538C94811A42327002B1239 /* logo16.png */,
 				3590B68111A33F7200E9CBED /* TileMap.tmx */,
@@ -1077,6 +1085,7 @@
 				78A14B1513A6BED9002150C2 /* bullet.png in Resources */,
 				78A14B1613A6BED9002150C2 /* enemy2.png in Resources */,
 				78A14B1713A6BED9002150C2 /* enemy3.png in Resources */,
+				78B63BD313C3C57900D88149 /* explosion.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1092,6 +1101,7 @@
 				82FA363911CD94540071117A /* GameOverScene.m in Sources */,
 				785100F213B9EC0000C97016 /* PlayGameWorldLayer.m in Sources */,
 				785100F313B9EC0000C97016 /* PlayGameHudLayer.m in Sources */,
+				78B63BD013C3B13000D88149 /* Monster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
