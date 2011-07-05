@@ -11,6 +11,7 @@
 #import "PlayGameHudLayer.h"
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
+#import "Monster.h"
 
 #define kMelonsNeededToWin 2
 
@@ -69,19 +70,15 @@
     
 }
 
--(void) animateEnemy:(CCSprite*)enemy
-{
-  //speed of the enemy
-  ccTime actualDuration = .1;
- 
+-(void) animateEnemy:(Monster*)enemy
+{ 
   // Create the actions
 
   // Move toward the player
   CGPoint newPositionDelta = ccpMult(ccpNormalize(ccpSub(_player.position,enemy.position)),5);
 
-  // If this isn't a flying enemy type.
-  int enemyKind = (int)[(NSNumber *)enemy.userData intValue];
-  if ( enemyKind != 1 ) {
+  // If this isn't a flying enemy type it can collide with obstacles.
+  if ( !enemy.isFlying ) {
     // If the move is into a collidable, don't move.
     // TODO later on maybe monsters should be able to break down blocks eventually (make them sand bags or dirt walls?) or path find around them?
     CGPoint newPosition = ccp(enemy.position.x + newPositionDelta.x, enemy.position.y + newPositionDelta.y);
@@ -102,6 +99,11 @@
         }
     }
   }
+ 
+  //speed of the enemy
+  int rangeDuration = enemy.maxMoveDuration - enemy.minMoveDuration;
+  int actualDurationFactor = (arc4random() % rangeDuration) + enemy.minMoveDuration;
+    ccTime actualDuration = .015 * actualDurationFactor;  
     
   id actionMove = [CCMoveBy actionWithDuration:actualDuration 
     position:newPositionDelta];
@@ -111,11 +113,10 @@
 }
 
 -(void)enemyMoveFinished:(id)sender {
-	CCSprite *enemy = (CCSprite *)sender;
+	Monster *enemy = (Monster *)sender;
     
     // Check enemy type, flying ones rotate to face player.
-    int enemyKind = (int)[(NSNumber *)enemy.userData intValue];
-    if ( enemyKind == 1 ) {
+    if ( enemy.isFlying ) {
     
   	  CGPoint diff = ccpSub(_player.position,enemy.position);
 	  float angleRadians = atanf((float)diff.y / (float)diff.x);
@@ -148,7 +149,15 @@
   int x = [[spawnPoint valueForKey:@"x"] intValue];
   int y = [[spawnPoint valueForKey:@"y"] intValue];
     
-  CCSprite *enemy = [CCSprite spriteWithFile:[NSString stringWithFormat:@"enemy%d.png", enemyKind]]; 
+  Monster *enemy;
+  if ( 1 == enemyKind ) {
+      enemy = [FlyingMonster monster];
+  } else if ( 2 == enemyKind ) {
+      enemy = [WeakAndFastMonster monster];
+  } else {
+      enemy = [StrongAndSlowMonster monster];
+  }
+    
   enemy.position = ccp(x, y);
   enemy.userData = [NSNumber numberWithInt:enemyKind];
   [self addChild:enemy];
@@ -190,7 +199,8 @@
       projectile.position.y - (projectile.contentSize.height/2), 
       projectile.contentSize.width, 
       projectile.contentSize.height);
- 
+
+    BOOL monsterHit = FALSE;      
     NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
 	// iterate through enemies, see if any intersect with currnet projectile
     for (CCSprite *target in _enemies) {
@@ -202,8 +212,15 @@
         target.contentSize.height);
  
       if (CGRectIntersectsRect(projectileRect, targetRect)) {
-        [targetsToDelete addObject:target];
-		NSLog(@"collision");
+          NSLog(@"collision");
+          monsterHit = TRUE;
+          Monster *monster = (Monster *)target;
+          monster.hp--;
+          if (monster.hp <= 0) {
+              [targetsToDelete addObject:target];
+          }
+          
+          break;
       }
     }
  
@@ -213,7 +230,8 @@
       [self removeChild:target cleanup:YES];									
     }
  
-    if (targetsToDelete.count > 0) {
+    if (monsterHit) {    
+      [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
       // add the projectile to the list of ones to remove
 	  [projectilesToDelete addObject:projectile];
     }
@@ -229,7 +247,7 @@
     
     NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
 	// iterate through enemies, see if any intersect with hole or net
-    for (CCSprite *target in _enemies) {
+    for (Monster *target in _enemies) {
         //NSLog(@"enemy");
         CGRect targetRect = CGRectMake(
                                        target.position.x - (target.contentSize.width/2), 
@@ -240,9 +258,8 @@
         int enemyX = (targetRect.origin.x + targetRect.size.width/2) / _tileMap.tileSize.width;
         int enemyY = ((_tileMap.mapSize.height * _tileMap.tileSize.height) - (targetRect.origin.y + targetRect.size.height/2)) / _tileMap.tileSize.height;
         
-        int enemyKind = (int)[(NSNumber *)target.userData intValue];
-        // Flying enemy
-        NSMutableArray* traps= enemyKind == 1 ? _nets : _holes;
+        // Flying enemy caught by a trap, other types caught by holes.
+        NSMutableArray* traps = target.isFlying ? _nets : _holes;
             for (NSValue *trapTileCoordValue in traps) {
                 CGPoint trapTileCoordPoint = [trapTileCoordValue CGPointValue];
                 

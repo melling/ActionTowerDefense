@@ -8,12 +8,12 @@
 
 #import "cocos2d.h"
 
-@class PlayGameGameLayer;
+@class PlayGameWorldLayer;
 
 @interface PlayGameHudLayer : CCLayer
 {   
     CCLabel *label;
-	PlayGameGameLayer *_gameLayer;
+	PlayGameWorldLayer *_gameLayer;
     
     CCMenuItemToggle *buildToggleItem;
     CCMenuItemToggle *moveToggleItem;
@@ -28,7 +28,7 @@
     BOOL _isInNetMode;
 }
 
-@property (nonatomic, retain) PlayGameGameLayer *gameLayer;
+@property (nonatomic, retain) PlayGameWorldLayer *gameLayer;
 @property (nonatomic, assign) BOOL isInMoveMode;
 @property (nonatomic, assign) BOOL isInProjectileMode;
 @property (nonatomic, assign) BOOL isInBuildMode;
