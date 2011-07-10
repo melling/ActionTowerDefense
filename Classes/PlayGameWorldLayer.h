@@ -17,20 +17,21 @@
     CCTMXLayer *_background;
     CCTMXLayer *_foreground;
     CCTMXLayer *_meta;
+    CCTMXLayer *_traps;    
+    
     CCSprite *_player;
     int _numCollected;
     PlayGameHudLayer *_hud;
     
 	NSMutableArray *_enemies;
 	NSMutableArray *_projectiles;
-	NSMutableArray *_holes;
-	NSMutableArray *_nets;
 }
 
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
 @property (nonatomic, retain) CCTMXLayer *background;
 @property (nonatomic, retain) CCTMXLayer *foreground;
 @property (nonatomic, retain) CCTMXLayer *meta;
+@property (nonatomic, retain) CCTMXLayer *traps;
 @property (nonatomic, retain) CCSprite *player;
 @property (nonatomic, assign) int numCollected;
 @property (nonatomic, retain) PlayGameHudLayer *hud;

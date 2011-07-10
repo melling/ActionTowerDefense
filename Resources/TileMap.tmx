@@ -76,6 +76,11 @@
    H4sIAAAAAAAAA+3awQkAIAwEwTz0pzXYf5emBhEDMgP33wIuAt5a1QEAAAAAAABQpOV6dcQFIzerIwCAYz//dzasQEhNECcAAA==
   </data>
  </layer>
+ <layer name="Traps" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3awQkAIAwEwTz0pzXYf5emBhEDMgP33wIuAt5a1QEAAAAAAABQpOV6dcQFIzerIwCAYz//dzasQEhNECcAAA==
+  </data>
+ </layer>
  <layer name="Meta" width="50" height="50">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3aMQ6AIAwFUK6F9z+YYTPGKLLY1vcSNpZf/kZbq6W/OJFVy3G0Ldz52sysM73HuT9ZezWbI1qfrkSfOf+ijwAAAAAAABBDln/8O5n2EZ5UyTFk2KVYtQNHnKxSECcAAA==

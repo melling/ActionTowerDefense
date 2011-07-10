@@ -15,13 +15,25 @@
 
 #define kMelonsNeededToWin 2
 
-//TODO code cleanup: separate files for classes, rename classes as needed, enums instead of numbers and multiple bools
+// Values for the Enemy property on a spawn point in the map to indicate a kind of enemy.
+// TODO cleaner to just use class name as property value?
+#define kEnemyValueInMapForFlyingMonster 1
+#define kEnemyValueInMapForWeakAndFastMonster 2
+#define kEnemyValueInMapForStrongAndSlowMonster 3
+
+#define kMapGIDForNet 49
+#define kMapGIDForHole 50
+#define kMapGIDForBlock 51
+#define kMapGIDForCollidable 57
+
+//TODO code cleanup: enums instead of numbers and multiple bools
 
 // PlayGameWorldLayer implementation
 @implementation PlayGameWorldLayer
 @synthesize tileMap = _tileMap;
 @synthesize background = _background;
 @synthesize foreground = _foreground;
+@synthesize traps = _traps;
 @synthesize meta = _meta;
 @synthesize player = _player;
 @synthesize numCollected = _numCollected;
@@ -70,34 +82,46 @@
     
 }
 
+-(bool) isCollidable:(CGPoint)tileCoord
+{
+    int tileGid = [_meta tileGIDAt:tileCoord];
+    if (tileGid) {
+        NSDictionary *properties = [_tileMap propertiesForGID:tileGid];
+        if (properties) {
+            NSString *collision = [properties valueForKey:@"Collidable"];
+            if (collision && [collision compare:@"True"] == NSOrderedSame) {
+                return TRUE;
+            }
+        }
+    }    
+    return FALSE;
+}
+
 -(void) animateEnemy:(Monster*)enemy
 { 
-  // Create the actions
-
   // Move toward the player
   CGPoint newPositionDelta = ccpMult(ccpNormalize(ccpSub(_player.position,enemy.position)),5);
 
   // If this isn't a flying enemy type it can collide with obstacles.
   if ( !enemy.isFlying ) {
-    // If the move is into a collidable, don't move.
-    // TODO later on maybe monsters should be able to break down blocks eventually (make them sand bags or dirt walls?) or path find around them?
-    CGPoint newPosition = ccp(enemy.position.x + newPositionDelta.x, enemy.position.y + newPositionDelta.y);
-    CGPoint tileCoord = [self tileCoordForPosition:newPosition];
+      // TODO later on maybe monsters should be able to break down blocks eventually (make them sand bags or dirt walls?) or path find around them?
+
+      CGPoint newPosition = ccp(enemy.position.x + newPositionDelta.x, enemy.position.y + newPositionDelta.y);
+      CGPoint tileCoord = [self tileCoordForPosition:newPosition];
       
-    //  NSLog(@"enemy at: %f , %f", tileCoord.x, tileCoord.y);
-    //  CGPoint tileCoord = ccp(3, 6);
-    if (tileCoord.x < _tileMap.mapSize.width && tileCoord.y < _tileMap.mapSize.height && tileCoord.x >=0 && tileCoord.y >=0 ) {
-        int tileGid = [_meta tileGIDAt:tileCoord];
-        if (tileGid) {
-          NSDictionary *properties = [_tileMap propertiesForGID:tileGid];
-          if (properties) {
-              NSString *collision = [properties valueForKey:@"Collidable"];
-              if (collision && [collision compare:@"True"] == NSOrderedSame) {
+      // If the enemy is on the map.
+      if (tileCoord.x < _tileMap.mapSize.width && tileCoord.y < _tileMap.mapSize.height && tileCoord.x >=0 && tileCoord.y >=0 ) {
+          
+          // If not a hole trap at this map location
+          int tileGid = [_traps tileGIDAt:tileCoord];
+          if (kMapGIDForHole != tileGid) {        
+              
+              // If the move is into a collidable, don't move.              
+              if ( [self isCollidable:tileCoord] ) {
                   newPositionDelta = ccp(0,0);
               }
           }
-        }
-    }
+      }
   }
  
   //speed of the enemy
@@ -148,11 +172,11 @@
 
   int x = [[spawnPoint valueForKey:@"x"] intValue];
   int y = [[spawnPoint valueForKey:@"y"] intValue];
-    
+      
   Monster *enemy;
-  if ( 1 == enemyKind ) {
+  if ( kEnemyValueInMapForFlyingMonster == enemyKind ) {
       enemy = [FlyingMonster monster];
-  } else if ( 2 == enemyKind ) {
+  } else if ( kEnemyValueInMapForWeakAndFastMonster == enemyKind ) {
       enemy = [WeakAndFastMonster monster];
   } else {
       enemy = [StrongAndSlowMonster monster];
@@ -249,33 +273,30 @@
 	// iterate through enemies, see if any intersect with hole or net
     for (Monster *target in _enemies) {
         //NSLog(@"enemy");
+        
+        //TODO check each corner of the target rect instead of just target.position?
         CGRect targetRect = CGRectMake(
                                        target.position.x - (target.contentSize.width/2), 
                                        target.position.y - (target.contentSize.height/2), 
                                        target.contentSize.width, 
                                        target.contentSize.height);
-              
-        int enemyX = (targetRect.origin.x + targetRect.size.width/2) / _tileMap.tileSize.width;
-        int enemyY = ((_tileMap.mapSize.height * _tileMap.tileSize.height) - (targetRect.origin.y + targetRect.size.height/2)) / _tileMap.tileSize.height;
-        
-        // Flying enemy caught by a trap, other types caught by holes.
-        NSMutableArray* traps = target.isFlying ? _nets : _holes;
-            for (NSValue *trapTileCoordValue in traps) {
-                CGPoint trapTileCoordPoint = [trapTileCoordValue CGPointValue];
+
+        CGPoint enemyTileCoord = [self tileCoordForPosition:target.position];
+        int tileGid = [_traps tileGIDAt:enemyTileCoord];
+        if (tileGid) {
+            BOOL isCaughtInNet = target.isFlying && kMapGIDForNet == tileGid;
+            BOOL isStuckInHole = !target.isFlying && kMapGIDForHole == tileGid;
+            if ( isCaughtInNet || isStuckInHole ) {
+                NSLog(@"enemy ran into trap");   
+
+                [targetsToDelete addObject:target];    
+
+                [_traps removeTileAt:enemyTileCoord];
+                [_meta removeTileAt:enemyTileCoord];
                 
-                int trapX = trapTileCoordPoint.x;
-                int trapY = trapTileCoordPoint.y;
-                
-                //NSLog([NSString stringWithFormat:@"enemy at %d, %d", enemyX, enemyY]);   
-                //NSLog([NSString stringWithFormat:@"trap at %d, %d", trapX, trapY]);    
-                
-                if ( trapX == enemyX && trapY == enemyY ) {
-                    [targetsToDelete addObject:target];    
-                    NSLog(@"enemy ran into trap");   
-                    break;
-                }
+                continue;
             }
-        
+        }       
     }
     
     // delete all trapped enemies
@@ -304,6 +325,7 @@
         self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"TileMap.tmx"];
         self.background = [_tileMap layerNamed:@"Background"];
         self.foreground = [_tileMap layerNamed:@"Foreground"];
+        self.traps = [_tileMap layerNamed:@"Traps"];
         self.meta = [_tileMap layerNamed:@"Meta"];
         _meta.visible = NO;
 
@@ -326,8 +348,6 @@
 		
 		_enemies = [[NSMutableArray alloc] init];
 		_projectiles = [[NSMutableArray alloc] init];
-		_nets = [[NSMutableArray alloc] init];
-		_holes = [[NSMutableArray alloc] init];
 		for (spawnPoint in [objects objects]) {
 
             // Read optional number of enemies to spawn property.
@@ -488,8 +508,10 @@
 		touchLocation = [self convertToNodeSpace:touchLocation]; 
         
         CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
-        [_foreground setTileGID:51 at:tileCoord];
-        [_meta setTileGID:57 at:tileCoord];
+        if ( ![self isCollidable:tileCoord] ) {
+            [_traps setTileGID:kMapGIDForBlock at:tileCoord];
+            [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
+        }
         
     } else if ( _hud.isInNetMode ) {
         
@@ -499,10 +521,10 @@
 		touchLocation = [self convertToNodeSpace:touchLocation]; 
         
         CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
-        [_foreground setTileGID:49 at:tileCoord];
-        [_meta setTileGID:57 at:tileCoord];
-        
-        [_nets addObject:[NSValue valueWithCGPoint:tileCoord]];
+        if ( ![self isCollidable:tileCoord] ) {
+            [_traps setTileGID:kMapGIDForNet at:tileCoord];
+            [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
+        }
         
     } else if ( _hud.isInHoleMode ) {
         
@@ -512,11 +534,10 @@
 		touchLocation = [self convertToNodeSpace:touchLocation]; 
         
         CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
-        [_foreground setTileGID:50 at:tileCoord];
-        [_meta setTileGID:57 at:tileCoord];
-        
-        [_holes addObject:[NSValue valueWithCGPoint:tileCoord]];
-        
+        if ( ![self isCollidable:tileCoord] ) {
+            [_traps setTileGID:kMapGIDForHole at:tileCoord];
+            [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
+        }        
     }
     
 }
@@ -525,8 +546,7 @@
 - (void) dealloc
 {
 	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
+	// cocos2d will automatically release all the children of its objects
 	self.tileMap = nil;
     self.background = nil;
     self.foreground = nil;
@@ -536,8 +556,6 @@
     
     [_enemies release];
     [_projectiles release];
-    [_nets release];
-    [_holes release];
     
 	// don't forget to call "super dealloc"
 	[super dealloc];
