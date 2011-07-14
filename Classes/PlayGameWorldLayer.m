@@ -78,7 +78,9 @@
     
     CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
     CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
-    self.position = viewPoint;
+    
+    // Smoother screen scrolling than immediate self.position = viewPoint;
+    [self runAction: [CCMoveTo actionWithDuration: 0.25 position: viewPoint]];
     
 }
 
@@ -425,8 +427,9 @@
         }
     }
     [[SimpleAudioEngine sharedEngine] playEffect:@"move.caf"];
-    _player.position = position;
 
+    // Smoother player movement than immediate _player.position = position;
+    [_player runAction: [CCMoveTo actionWithDuration: 0.25 position: position]];
 }
 
 -(void)projectileMoveFinished:(id)sender {
