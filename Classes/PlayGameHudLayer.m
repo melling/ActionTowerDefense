@@ -12,8 +12,6 @@
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
 
-#define kMelonsNeededToWin 2
-
 //TODO code cleanup: separate files for classes, rename classes as needed, enums instead of numbers and multiple bools
 
 @implementation PlayGameHudLayer
@@ -30,12 +28,18 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Setup score.
-        label = [CCLabel labelWithString:@"0" dimensions:CGSizeMake(50, 20) alignment:UITextAlignmentRight fontName:@"Verdana-Bold" fontSize:18.0];
-        label.color = ccc3(0,0,0);
-        int margin = 10;
-        label.position = ccp(winSize.width - (label.contentSize.width/2) - margin, label.contentSize.height/2 + margin);
-        [self addChild:label];
+        melonsCollectedLabel = [CCLabel labelWithString:@"Melons: 0" fontName:@"Verdana-Bold" fontSize:18.0];
+        melonsCollectedLabel.color = ccc3(255,255,255);
+        melonsCollectedLabel.anchorPoint = ccp(1, 1);
+        melonsCollectedLabel.position = ccp(winSize.width, winSize.height);
+        [self addChild:melonsCollectedLabel];
         
+        scoreLabel = [CCLabel labelWithString:@"Score: 0" fontName:@"Verdana-Bold" fontSize:18.0];
+        scoreLabel.color = ccc3(255,255,255);
+        scoreLabel.anchorPoint = ccp(0, 1);
+        scoreLabel.position = ccp(0, winSize.height);
+        [self addChild:scoreLabel];
+               
         // Setup projectile button.
 		projectileToggleItem = [self 
                            createToggleItem: @"projectile-button-on.png" 
@@ -142,8 +146,12 @@
     holeToggleItem.selectedIndex = 1;
 }
 
-- (void)numCollectedChanged:(int)numCollected {
-    [label setString:[NSString stringWithFormat:@"%d", numCollected]];
+- (void)melonsCollectedChanged:(int)melonsCollected {
+    [melonsCollectedLabel setString:[NSString stringWithFormat:@"Melons: %d", melonsCollected]];
+}
+
+- (void)scoreChanged:(int)score {
+    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
 }
 
 @end

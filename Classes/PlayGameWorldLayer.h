@@ -20,7 +20,8 @@
     CCTMXLayer *_traps;    
     
     CCSprite *_player;
-    int _numCollected;
+    int _melonsCollected;
+    int _score;
     PlayGameHudLayer *_hud;
     
 	NSMutableArray *_enemies;
@@ -33,7 +34,8 @@
 @property (nonatomic, retain) CCTMXLayer *meta;
 @property (nonatomic, retain) CCTMXLayer *traps;
 @property (nonatomic, retain) CCSprite *player;
-@property (nonatomic, assign) int numCollected;
+@property (nonatomic, assign) int melonsCollected;
+@property (nonatomic, assign) int score;
 @property (nonatomic, retain) PlayGameHudLayer *hud;
 
 // returns a Scene that contains the PlayGameWorldLayer and PlayGameHudLayer as children

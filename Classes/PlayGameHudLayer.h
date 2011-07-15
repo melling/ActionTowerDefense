@@ -12,7 +12,8 @@
 
 @interface PlayGameHudLayer : CCLayer
 {   
-    CCLabel *label;
+    CCLabel *melonsCollectedLabel;
+    CCLabel *scoreLabel;
 	PlayGameWorldLayer *_gameLayer;
     
     CCMenuItemToggle *buildToggleItem;
@@ -36,6 +37,7 @@
 @property (nonatomic, assign) BOOL isInNetMode;
 
 -(CCMenuItemToggle*)createToggleItem:(NSString*)onImageFile withOffImageFile:(NSString*)offImageFile withCallback:(SEL)callback;
-- (void)numCollectedChanged:(int)numCollected;
+- (void)melonsCollectedChanged:(int)melonsCollected;
+- (void)scoreChanged:(int)score;
 - (void)disableAllToggleButtons;
 @end

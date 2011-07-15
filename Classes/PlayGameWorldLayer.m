@@ -26,6 +26,9 @@
 #define kMapGIDForBlock 51
 #define kMapGIDForCollidable 57
 
+#define kPointsForCollectingMelon 1000
+#define kPointsForKillingMonster 100
+
 //TODO code cleanup: enums instead of numbers and multiple bools
 
 // PlayGameWorldLayer implementation
@@ -36,7 +39,8 @@
 @synthesize traps = _traps;
 @synthesize meta = _meta;
 @synthesize player = _player;
-@synthesize numCollected = _numCollected;
+@synthesize melonsCollected = _melonsCollected;
+@synthesize score = _score;
 @synthesize hud = _hud;
 
 +(id) scene
@@ -253,7 +257,10 @@
     // delete all hit enemies
 	for (CCSprite *target in targetsToDelete) {
       [_enemies removeObject:target];
-      [self removeChild:target cleanup:YES];									
+      [self removeChild:target cleanup:YES];	
+        
+        self.score += kPointsForKillingMonster;
+        [_hud scoreChanged:_score];
     }
  
     if (monsterHit) {    
@@ -304,7 +311,10 @@
     // delete all trapped enemies
 	for (CCSprite *target in targetsToDelete) {
         [_enemies removeObject:target];
-        [self removeChild:target cleanup:YES];									
+        [self removeChild:target cleanup:YES];			
+        
+        self.score += kPointsForKillingMonster;
+        [_hud scoreChanged:_score];
     }    
     [targetsToDelete release];
     
@@ -417,10 +427,14 @@
             if (collectable && [collectable compare:@"True"] == NSOrderedSame) {
                 [_meta removeTileAt:tileCoord];
                 [_foreground removeTileAt:tileCoord];
-                self.numCollected++;
-                [_hud numCollectedChanged:_numCollected];
+                
+                self.score += kPointsForCollectingMelon;
+                [_hud scoreChanged:_score];
+                
+                self.melonsCollected += 1;
+                [_hud melonsCollectedChanged:_melonsCollected];
                 [[SimpleAudioEngine sharedEngine] playEffect:@"pickup.caf"];
-				if (_numCollected == kMelonsNeededToWin){
+				if (_melonsCollected == kMelonsNeededToWin){
 					[self win];
 				}
             }
