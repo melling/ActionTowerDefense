@@ -12,8 +12,6 @@
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
 
-//TODO code cleanup: separate files for classes, rename classes as needed, enums instead of numbers and multiple bools
-
 @implementation PlayGameHudLayer
 @synthesize gameLayer = _gameLayer;
 @synthesize selectedMenuItemToggle = _selectedMenuItemToggle;
@@ -35,23 +33,23 @@
         scoreLabel.anchorPoint = ccp(0, 1);
         scoreLabel.position = ccp(0, winSize.height);
         [self addChild:scoreLabel];
-               
+        
         // Setup projectile button.
 		projectileToggleItem = [self 
-                           createToggleItem: @"projectile-button-on.png" 
-                           withOffImageFile: @"projectile-button-off.png"
-                           withCallback: @selector(projectileButtonTapped:)
-                           ];
-
+                                createToggleItem: @"projectile-button-on.png" 
+                                withOffImageFile: @"projectile-button-off.png"
+                                withCallback: @selector(projectileButtonTapped:)
+                                ];
+        
         self.selectedMenuItemToggle = kProjectile;
         projectileToggleItem.selectedIndex = 1;
         
         // Setup move button.
 		moveToggleItem = [self 
-                           createToggleItem: @"move-button-on.png" 
-                           withOffImageFile: @"move-button-off.png"
-                           withCallback: @selector(moveButtonTapped:)
-                           ];
+                          createToggleItem: @"move-button-on.png" 
+                          withOffImageFile: @"move-button-off.png"
+                          withCallback: @selector(moveButtonTapped:)
+                          ];
         
         // Setup build button.
 		buildToggleItem = [self 
@@ -62,23 +60,23 @@
         
         // Setup net button.
 		netToggleItem = [self 
-                           createToggleItem: @"net-button-on.png" 
-                           withOffImageFile: @"net-button-off.png"
-                           withCallback: @selector(netButtonTapped:)
-                           ];
+                         createToggleItem: @"net-button-on.png" 
+                         withOffImageFile: @"net-button-off.png"
+                         withCallback: @selector(netButtonTapped:)
+                         ];
         
         // Setup hole button.
 		holeToggleItem = [self 
-                           createToggleItem: @"hole-button-on.png" 
-                           withOffImageFile: @"hole-button-off.png"
-                           withCallback: @selector(holeButtonTapped:)
-                           ];
-
+                          createToggleItem: @"hole-button-on.png" 
+                          withOffImageFile: @"hole-button-off.png"
+                          withCallback: @selector(holeButtonTapped:)
+                          ];
+        
         CCMenu *toggleMenu = [CCMenu menuWithItems:projectileToggleItem, moveToggleItem, buildToggleItem, netToggleItem, holeToggleItem, nil];
         [toggleMenu alignItemsHorizontally];
 		toggleMenu.position = ccp(150, 25);
 		[self addChild:toggleMenu];    
-     }
+    }
     return self;
 }
 
@@ -89,7 +87,7 @@
     CCMenuItem *buildOff = [[CCMenuItemImage itemFromNormalImage:offImageFile 
                                                    selectedImage:offImageFile target:nil selector:nil] retain];
     CCMenuItemToggle *createdToggleItem = [CCMenuItemToggle itemWithTarget:self 
-                                              selector:callback items:buildOff, buildOn, nil];  
+                                                                  selector:callback items:buildOff, buildOn, nil];  
     return createdToggleItem;
 }
 

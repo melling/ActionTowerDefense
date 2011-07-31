@@ -20,7 +20,7 @@
 @implementation WeakAndFastMonster
 
 + (id)monster {
- 
+    
     WeakAndFastMonster *monster = nil;
     if ((monster = [[[super alloc] initWithFile:@"enemy2.png"] autorelease])) {
         monster.hp = 1;

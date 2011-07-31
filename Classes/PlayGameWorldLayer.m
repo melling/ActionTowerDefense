@@ -29,8 +29,6 @@
 #define kPointsForCollectingMelon 1000
 #define kPointsForKillingMonster 100
 
-//TODO code cleanup: enums instead of numbers and multiple bools
-
 // PlayGameWorldLayer implementation
 @implementation PlayGameWorldLayer
 @synthesize tileMap = _tileMap;
@@ -105,41 +103,41 @@
 
 -(void) animateEnemy:(Monster*)enemy
 { 
-  // Move toward the player
-  CGPoint newPositionDelta = ccpMult(ccpNormalize(ccpSub(_player.position,enemy.position)),5);
-
-  // If this isn't a flying enemy type it can collide with obstacles.
-  if ( !enemy.isFlying ) {
-      // TODO later on maybe monsters should be able to break down blocks eventually (make them sand bags or dirt walls?) or path find around them?
-
-      CGPoint newPosition = ccp(enemy.position.x + newPositionDelta.x, enemy.position.y + newPositionDelta.y);
-      CGPoint tileCoord = [self tileCoordForPosition:newPosition];
-      
-      // If the enemy is on the map.
-      if (tileCoord.x < _tileMap.mapSize.width && tileCoord.y < _tileMap.mapSize.height && tileCoord.x >=0 && tileCoord.y >=0 ) {
-          
-          // If not a hole trap at this map location
-          int tileGid = [_traps tileGIDAt:tileCoord];
-          if (kMapGIDForHole != tileGid) {        
-              
-              // If the move is into a collidable, don't move.              
-              if ( [self isCollidable:tileCoord] ) {
-                  newPositionDelta = ccp(0,0);
-              }
-          }
-      }
-  }
- 
-  //speed of the enemy
-  int rangeDuration = enemy.maxMoveDuration - enemy.minMoveDuration;
-  int actualDurationFactor = (arc4random() % rangeDuration) + enemy.minMoveDuration;
+    // Move toward the player
+    CGPoint newPositionDelta = ccpMult(ccpNormalize(ccpSub(_player.position,enemy.position)),5);
+    
+    // If this isn't a flying enemy type it can collide with obstacles.
+    if ( !enemy.isFlying ) {
+        // TODO later on maybe monsters should be able to break down blocks eventually (make them sand bags or dirt walls?) or path find around them?
+        
+        CGPoint newPosition = ccp(enemy.position.x + newPositionDelta.x, enemy.position.y + newPositionDelta.y);
+        CGPoint tileCoord = [self tileCoordForPosition:newPosition];
+        
+        // If the enemy is on the map.
+        if (tileCoord.x < _tileMap.mapSize.width && tileCoord.y < _tileMap.mapSize.height && tileCoord.x >=0 && tileCoord.y >=0 ) {
+            
+            // If not a hole trap at this map location
+            int tileGid = [_traps tileGIDAt:tileCoord];
+            if (kMapGIDForHole != tileGid) {        
+                
+                // If the move is into a collidable, don't move.              
+                if ( [self isCollidable:tileCoord] ) {
+                    newPositionDelta = ccp(0,0);
+                }
+            }
+        }
+    }
+    
+    //speed of the enemy
+    int rangeDuration = enemy.maxMoveDuration - enemy.minMoveDuration;
+    int actualDurationFactor = (arc4random() % rangeDuration) + enemy.minMoveDuration;
     ccTime actualDuration = .015 * actualDurationFactor;  
     
-  id actionMove = [CCMoveBy actionWithDuration:actualDuration 
-    position:newPositionDelta];
-  id actionMoveDone = [CCCallFuncN actionWithTarget:self 
-    selector:@selector(enemyMoveFinished:)];
-  [enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]]; 
+    id actionMove = [CCMoveBy actionWithDuration:actualDuration 
+                                        position:newPositionDelta];
+    id actionMoveDone = [CCCallFuncN actionWithTarget:self 
+                                             selector:@selector(enemyMoveFinished:)];
+    [enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]]; 
 }
 
 -(void)enemyMoveFinished:(id)sender {
@@ -147,16 +145,16 @@
     
     // Check enemy type, flying ones rotate to face player.
     if ( enemy.isFlying ) {
-    
-  	  CGPoint diff = ccpSub(_player.position,enemy.position);
-	  float angleRadians = atanf((float)diff.y / (float)diff.x);
-	  float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
-	  float cocosAngle = -1 * angleDegrees;
-	  if (diff.x < 0){
-		cocosAngle += 180;
-	  }
-	  enemy.rotation = cocosAngle;
-    // Walking enemies flip horizontally to face player.
+        
+        CGPoint diff = ccpSub(_player.position,enemy.position);
+        float angleRadians = atanf((float)diff.y / (float)diff.x);
+        float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
+        float cocosAngle = -1 * angleDegrees;
+        if (diff.x < 0){
+            cocosAngle += 180;
+        }
+        enemy.rotation = cocosAngle;
+        // Walking enemies flip horizontally to face player.
     } else {
         CGPoint diff = ccpSub(_player.position,enemy.position);
         if (diff.x < 0){
@@ -171,29 +169,29 @@
 
 
 -(void)addEnemyAtSpawnPoint:(id)sender data:(id)spawnPoint {
-  int enemyKind = [[spawnPoint valueForKey:@"Enemy"] intValue];
-  if (enemyKind < 1) {
-    return;
-  }
-
-  int x = [[spawnPoint valueForKey:@"x"] intValue];
-  int y = [[spawnPoint valueForKey:@"y"] intValue];
-      
-  Monster *enemy;
-  if ( kEnemyValueInMapForFlyingMonster == enemyKind ) {
-      enemy = [FlyingMonster monster];
-  } else if ( kEnemyValueInMapForWeakAndFastMonster == enemyKind ) {
-      enemy = [WeakAndFastMonster monster];
-  } else {
-      enemy = [StrongAndSlowMonster monster];
-  }
+    int enemyKind = [[spawnPoint valueForKey:@"Enemy"] intValue];
+    if (enemyKind < 1) {
+        return;
+    }
     
-  enemy.position = ccp(x, y);
-  enemy.userData = [NSNumber numberWithInt:enemyKind];
-  [self addChild:enemy];
-  [_enemies addObject:enemy];
-  [self animateEnemy: enemy]; 
-  NSLog(@"%@", enemy);
+    int x = [[spawnPoint valueForKey:@"x"] intValue];
+    int y = [[spawnPoint valueForKey:@"y"] intValue];
+    
+    Monster *enemy;
+    if ( kEnemyValueInMapForFlyingMonster == enemyKind ) {
+        enemy = [FlyingMonster monster];
+    } else if ( kEnemyValueInMapForWeakAndFastMonster == enemyKind ) {
+        enemy = [WeakAndFastMonster monster];
+    } else {
+        enemy = [StrongAndSlowMonster monster];
+    }
+    
+    enemy.position = ccp(x, y);
+    enemy.userData = [NSNumber numberWithInt:enemyKind];
+    [self addChild:enemy];
+    [_enemies addObject:enemy];
+    [self animateEnemy: enemy]; 
+    NSLog(@"%@", enemy);
 }
 
 - (void)lose {
@@ -209,73 +207,73 @@
 }
 
 - (void)testCollisions:(ccTime)dt {
-  for (CCSprite *target in _enemies) {
-    CGRect targetRect = CGRectMake(
-	  target.position.x - (target.contentSize.width/2), 
-	  target.position.y - (target.contentSize.height/2), 
-	  target.contentSize.width, 
-	  target.contentSize.height);
-	if (CGRectContainsPoint(targetRect, _player.position)) {
-	  [self lose];
-	}
-  }
-  
-  NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-  // iterate through projectiles
-  for (CCSprite *projectile in _projectiles) {
-	NSLog(@"projectile: %d enemies", [_enemies count]);
-    CGRect projectileRect = CGRectMake(
-      projectile.position.x - (projectile.contentSize.width/2), 
-      projectile.position.y - (projectile.contentSize.height/2), 
-      projectile.contentSize.width, 
-      projectile.contentSize.height);
-
-    BOOL monsterHit = FALSE;      
-    NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
-	// iterate through enemies, see if any intersect with currnet projectile
     for (CCSprite *target in _enemies) {
-	  NSLog(@"enemy");
-      CGRect targetRect = CGRectMake(
-        target.position.x - (target.contentSize.width/2), 
-        target.position.y - (target.contentSize.height/2), 
-        target.contentSize.width, 
-        target.contentSize.height);
- 
-      if (CGRectIntersectsRect(projectileRect, targetRect)) {
-          NSLog(@"collision");
-          monsterHit = TRUE;
-          Monster *monster = (Monster *)target;
-          monster.hp--;
-          if (monster.hp <= 0) {
-              [targetsToDelete addObject:target];
-          }
-          
-          break;
-      }
+        CGRect targetRect = CGRectMake(
+                                       target.position.x - (target.contentSize.width/2), 
+                                       target.position.y - (target.contentSize.height/2), 
+                                       target.contentSize.width, 
+                                       target.contentSize.height);
+        if (CGRectContainsPoint(targetRect, _player.position)) {
+            [self lose];
+        }
     }
- 
-    // delete all hit enemies
-	for (CCSprite *target in targetsToDelete) {
-      [_enemies removeObject:target];
-      [self removeChild:target cleanup:YES];	
+    
+    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
+    // iterate through projectiles
+    for (CCSprite *projectile in _projectiles) {
+        NSLog(@"projectile: %d enemies", [_enemies count]);
+        CGRect projectileRect = CGRectMake(
+                                           projectile.position.x - (projectile.contentSize.width/2), 
+                                           projectile.position.y - (projectile.contentSize.height/2), 
+                                           projectile.contentSize.width, 
+                                           projectile.contentSize.height);
         
-        self.score += kPointsForKillingMonster;
-        [_hud scoreChanged:_score];
+        BOOL monsterHit = FALSE;      
+        NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
+        // iterate through enemies, see if any intersect with currnet projectile
+        for (CCSprite *target in _enemies) {
+            NSLog(@"enemy");
+            CGRect targetRect = CGRectMake(
+                                           target.position.x - (target.contentSize.width/2), 
+                                           target.position.y - (target.contentSize.height/2), 
+                                           target.contentSize.width, 
+                                           target.contentSize.height);
+            
+            if (CGRectIntersectsRect(projectileRect, targetRect)) {
+                NSLog(@"collision");
+                monsterHit = TRUE;
+                Monster *monster = (Monster *)target;
+                monster.hp--;
+                if (monster.hp <= 0) {
+                    [targetsToDelete addObject:target];
+                }
+                
+                break;
+            }
+        }
+        
+        // delete all hit enemies
+        for (CCSprite *target in targetsToDelete) {
+            [_enemies removeObject:target];
+            [self removeChild:target cleanup:YES];	
+            
+            self.score += kPointsForKillingMonster;
+            [_hud scoreChanged:_score];
+        }
+        
+        if (monsterHit) {    
+            [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
+            // add the projectile to the list of ones to remove
+            [projectilesToDelete addObject:projectile];
+        }
+        [targetsToDelete release];
     }
- 
-    if (monsterHit) {    
-      [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
-      // add the projectile to the list of ones to remove
-	  [projectilesToDelete addObject:projectile];
+    // remove all the projectiles that hit.
+    for (CCSprite *projectile in projectilesToDelete) {
+        [_projectiles removeObject:projectile];
+        [self removeChild:projectile cleanup:YES];
     }
-    [targetsToDelete release];
-  }
-  // remove all the projectiles that hit.
-  for (CCSprite *projectile in projectilesToDelete) {
-    [_projectiles removeObject:projectile];
-    [self removeChild:projectile cleanup:YES];
-  }
-  [projectilesToDelete release];
+    [projectilesToDelete release];
     
     
     NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
@@ -289,7 +287,7 @@
                                        target.position.y - (target.contentSize.height/2), 
                                        target.contentSize.width, 
                                        target.contentSize.height);
-
+        
         CGPoint enemyTileCoord = [self tileCoordForPosition:target.position];
         int tileGid = [_traps tileGIDAt:enemyTileCoord];
         if (tileGid) {
@@ -297,9 +295,9 @@
             BOOL isStuckInHole = !target.isFlying && kMapGIDForHole == tileGid;
             if ( isCaughtInNet || isStuckInHole ) {
                 NSLog(@"enemy ran into trap");   
-
+                
                 [targetsToDelete addObject:target];    
-
+                
                 [_traps removeTileAt:enemyTileCoord];
                 [_meta removeTileAt:enemyTileCoord];
                 
@@ -340,14 +338,14 @@
         self.traps = [_tileMap layerNamed:@"Traps"];
         self.meta = [_tileMap layerNamed:@"Meta"];
         _meta.visible = NO;
-
+        
         // Find spawn point x,y coordinates
         CCTMXObjectGroup *objects = [_tileMap objectGroupNamed:@"Objects"];
         NSMutableDictionary *spawnPoints = [objects objectNamed:@"SpawnPoint"];
         NSAssert(spawnPoints.count > 0, @"SpawnPoint object missing");
         int x = [[spawnPoints valueForKey:@"x"] intValue];
         int y = [[spawnPoints valueForKey:@"y"] intValue];
-
+        
         // Create a player sprite at the x,y coordinates
         self.player = [CCSprite spriteWithFile:@"Player.png"];
         _player.position = ccp(x, y);
@@ -361,21 +359,21 @@
 		_enemies = [[NSMutableArray alloc] init];
 		_projectiles = [[NSMutableArray alloc] init];
 		for (spawnPoint in [objects objects]) {
-
+            
             // Read optional number of enemies to spawn property.
             int numberOfEnemiesToSpawn = [[spawnPoint valueForKey:@"NumberOfEnemiesToSpawn"] intValue];
             if ( numberOfEnemiesToSpawn <= 0 ) {
                 // Spawn 1 enemy if nothing set.
                 numberOfEnemiesToSpawn = 1;
             }
-
+            
             // Read optional property for how long to wait before spawning each enemy.
             float SpawnDelaySeconds = [[spawnPoint valueForKey:@"SpawnDelaySeconds"] intValue];
             if ( SpawnDelaySeconds < 0.0f ) {
                 // Spawn instantly if nothing set.
                 SpawnDelaySeconds = 0.0f;
             }
-
+            
             // Action for adding 1 enemy.
             id actionAddEnemy = [CCCallFuncND actionWithTarget:self
                                                       selector:@selector(addEnemyAtSpawnPoint:data:) data:spawnPoint];
@@ -390,10 +388,10 @@
             // Run the action.
             [_player runAction:actionAddEnemies]; 
 		}
-
+        
         // Center the view on the player (or as close as we can!)
         [self setViewpointCenter:_player.position];
-                    
+        
         [self addChild:_tileMap z:-1];
 		
 		[self schedule:@selector(testCollisions:)];
@@ -412,7 +410,7 @@
 }
 
 -(void)setPlayerPosition:(CGPoint)position {
-
+    
     CGPoint tileCoord = [self tileCoordForPosition:position];
     int tileGid = [_meta tileGIDAt:tileCoord];
     if (tileGid) {
@@ -441,20 +439,20 @@
         }
     }
     [[SimpleAudioEngine sharedEngine] playEffect:@"move.caf"];
-
+    
     // Smoother player movement than immediate _player.position = position;
     [_player runAction: [CCMoveTo actionWithDuration: 0.25 position: position]];
 }
 
 -(void)projectileMoveFinished:(id)sender {
-  CCSprite *sprite = (CCSprite *)sender;
-  [self removeChild:sprite cleanup:YES];
-  [_projectiles removeObject:sprite];
+    CCSprite *sprite = (CCSprite *)sender;
+    [self removeChild:sprite cleanup:YES];
+    [_projectiles removeObject:sprite];
 }
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-
+    
     CGPoint touchLocation = [touch locationInView: [touch view]];		
     touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
     touchLocation = [self convertToNodeSpace:touchLocation];
@@ -466,40 +464,39 @@
     
     switch ( _hud.selectedMenuItemToggle ) {      
         case kMove:
-		
-		playerPos = _player.position;
-		diff = ccpSub(touchLocation, playerPos);
-		if (abs(diff.x) > abs(diff.y)) {
-			if (diff.x > 0) {
-				playerPos.x += _tileMap.tileSize.width;
-			} else {
-				playerPos.x -= _tileMap.tileSize.width; 
-			}    
-		} else {
-			if (diff.y > 0) {
-				playerPos.y += _tileMap.tileSize.height;
-			} else {
-				playerPos.y -= _tileMap.tileSize.height;
-			}
-		}
-		//player.position = playerPos; // Todo: Trymove
-		[self setPlayerPosition:playerPos];
-		
-		[self setViewpointCenter:_player.position];
-
+            
+		    playerPos = _player.position;
+		    diff = ccpSub(touchLocation, playerPos);
+		    if (abs(diff.x) > abs(diff.y)) {
+		    	if (diff.x > 0) {
+		    		playerPos.x += _tileMap.tileSize.width;
+		    	} else {
+			    	playerPos.x -= _tileMap.tileSize.width; 
+		    	}    
+		    } else {
+		    	if (diff.y > 0) {
+			    	playerPos.y += _tileMap.tileSize.height;
+		    	} else {
+				    playerPos.y -= _tileMap.tileSize.height;
+			    }
+		    }
+		    //player.position = playerPos; // Todo: Trymove
+		    [self setPlayerPosition:playerPos];
+            
+		    [self setViewpointCenter:_player.position];
+            
             break;   
             
         case kBuild:   
             
-
             if ( ![self isCollidable:tileCoord] ) {
                 [_traps setTileGID:kMapGIDForBlock at:tileCoord];
                 [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
             }
             
             break;
-        
-         case kProjectile:
+            
+        case kProjectile:
             
             // Create a projectile and put it at the player's location
             projectile = [CCSprite spriteWithFile:@"bullet.png"];
@@ -533,25 +530,25 @@
                                                      selector:@selector(projectileMoveFinished:)];
             [projectile runAction:[CCSequence actionOne:[CCMoveTo actionWithDuration:realMoveDuration position:realDest] two: actionMoveDone]];
             [_projectiles addObject:projectile];
-        
+            
             break;
-        
+            
         case kNet:
             
             if ( ![self isCollidable:tileCoord] ) {
                 [_traps setTileGID:kMapGIDForNet at:tileCoord];
                 [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
             }
-        
+            
             break;
-        
-         case kHole:
+            
+        case kHole:
             
             if ( ![self isCollidable:tileCoord] ) {
                 [_traps setTileGID:kMapGIDForHole at:tileCoord];
                 [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
             }      
-         break;
+            break;
     }	
     
 }
