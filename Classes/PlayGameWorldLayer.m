@@ -454,14 +454,21 @@
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	if ( _hud.isInMoveMode )
-	{
-		CGPoint touchLocation = [touch locationInView: [touch view]];		
-		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
-		touchLocation = [self convertToNodeSpace:touchLocation];
+
+    CGPoint touchLocation = [touch locationInView: [touch view]];		
+    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
+    
+    CGPoint playerPos;
+    CGPoint diff;
+    CCSprite *projectile;
+    
+    switch ( _hud.selectedMenuItemToggle ) {      
+        case kMove:
 		
-		CGPoint playerPos = _player.position;
-		CGPoint diff = ccpSub(touchLocation, playerPos);
+		playerPos = _player.position;
+		diff = ccpSub(touchLocation, playerPos);
 		if (abs(diff.x) > abs(diff.y)) {
 			if (diff.x > 0) {
 				playerPos.x += _tileMap.tileSize.width;
@@ -479,83 +486,73 @@
 		[self setPlayerPosition:playerPos];
 		
 		[self setViewpointCenter:_player.position];
-	} else if ( _hud.isInProjectileMode ) {
-		// Find where the touch is
-		CGPoint touchLocation = [touch locationInView: [touch view]];		
-		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
-		touchLocation = [self convertToNodeSpace:touchLocation];
 
-		// Create a projectile and put it at the player's location
-		CCSprite *projectile = [CCSprite spriteWithFile:@"bullet.png"];
-		projectile.position = _player.position;
-		[self addChild:projectile];
+            break;   
+            
+        case kBuild:   
+            
 
-		// Determine where we wish to shoot the projectile to
-		int realX;
-		
-		// Are we shooting to the left or right?
-		CGPoint diff = ccpSub(touchLocation, _player.position);
-		if (diff.x > 0)
-		{
-			realX = (_tileMap.mapSize.width * _tileMap.tileSize.width) + (projectile.contentSize.width/2);
-		}else{
-			realX = -(_tileMap.mapSize.width * _tileMap.tileSize.width) - (projectile.contentSize.width/2);
-		}
-		float ratio = (float) diff.y / (float) diff.x;
-		int realY = ((realX - projectile.position.x) * ratio) + projectile.position.y;
-		CGPoint realDest = ccp(realX, realY);
-		
-		// Determine the length of how far we're shooting
-		int offRealX = realX - projectile.position.x;
-		int offRealY = realY - projectile.position.y;
-		float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
-		float velocity = 480/1; // 480pixels/1sec
-		float realMoveDuration = length/velocity;
-
-		// Move projectile to actual endpoint
-		id actionMoveDone = [CCCallFuncN actionWithTarget:self 
-			selector:@selector(projectileMoveFinished:)];
-		[projectile runAction:[CCSequence actionOne:[CCMoveTo actionWithDuration:realMoveDuration position:realDest] two: actionMoveDone]];
-		[_projectiles addObject:projectile];
-	} else if ( _hud.isInBuildMode ) {
+            if ( ![self isCollidable:tileCoord] ) {
+                [_traps setTileGID:kMapGIDForBlock at:tileCoord];
+                [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
+            }
+            
+            break;
         
-        // Find where the touch is
-		CGPoint touchLocation = [touch locationInView: [touch view]];		
-		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
-		touchLocation = [self convertToNodeSpace:touchLocation]; 
+         case kProjectile:
+            
+            // Create a projectile and put it at the player's location
+            projectile = [CCSprite spriteWithFile:@"bullet.png"];
+            projectile.position = _player.position;
+            [self addChild:projectile];
+            
+            // Determine where we wish to shoot the projectile to
+            int realX;
+            
+            // Are we shooting to the left or right?
+            CGPoint diff = ccpSub(touchLocation, _player.position);
+            if (diff.x > 0)
+            {
+                realX = (_tileMap.mapSize.width * _tileMap.tileSize.width) + (projectile.contentSize.width/2);
+            }else{
+                realX = -(_tileMap.mapSize.width * _tileMap.tileSize.width) - (projectile.contentSize.width/2);
+            }
+            float ratio = (float) diff.y / (float) diff.x;
+            int realY = ((realX - projectile.position.x) * ratio) + projectile.position.y;
+            CGPoint realDest = ccp(realX, realY);
+            
+            // Determine the length of how far we're shooting
+            int offRealX = realX - projectile.position.x;
+            int offRealY = realY - projectile.position.y;
+            float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
+            float velocity = 480/1; // 480pixels/1sec
+            float realMoveDuration = length/velocity;
+            
+            // Move projectile to actual endpoint
+            id actionMoveDone = [CCCallFuncN actionWithTarget:self 
+                                                     selector:@selector(projectileMoveFinished:)];
+            [projectile runAction:[CCSequence actionOne:[CCMoveTo actionWithDuration:realMoveDuration position:realDest] two: actionMoveDone]];
+            [_projectiles addObject:projectile];
         
-        CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
-        if ( ![self isCollidable:tileCoord] ) {
-            [_traps setTileGID:kMapGIDForBlock at:tileCoord];
-            [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
-        }
+            break;
         
-    } else if ( _hud.isInNetMode ) {
+        case kNet:
+            
+            if ( ![self isCollidable:tileCoord] ) {
+                [_traps setTileGID:kMapGIDForNet at:tileCoord];
+                [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
+            }
         
-        // Find where the touch is
-		CGPoint touchLocation = [touch locationInView: [touch view]];		
-		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
-		touchLocation = [self convertToNodeSpace:touchLocation]; 
+            break;
         
-        CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
-        if ( ![self isCollidable:tileCoord] ) {
-            [_traps setTileGID:kMapGIDForNet at:tileCoord];
-            [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
-        }
-        
-    } else if ( _hud.isInHoleMode ) {
-        
-        // Find where the touch is
-		CGPoint touchLocation = [touch locationInView: [touch view]];		
-		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
-		touchLocation = [self convertToNodeSpace:touchLocation]; 
-        
-        CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
-        if ( ![self isCollidable:tileCoord] ) {
-            [_traps setTileGID:kMapGIDForHole at:tileCoord];
-            [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
-        }        
-    }
+         case kHole:
+            
+            if ( ![self isCollidable:tileCoord] ) {
+                [_traps setTileGID:kMapGIDForHole at:tileCoord];
+                [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
+            }      
+         break;
+    }	
     
 }
 

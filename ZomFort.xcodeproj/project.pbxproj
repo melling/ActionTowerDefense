@@ -534,8 +534,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				504DFC6810AF1739006D82FE /* LICENSE.cocos2d */,
-				504DFC6910AF1739006D82FE /* LICENSE.cocosdenshion */,
 				506EDAA3102F461B00A389B3 /* cocos2d Sources */,
 				2D500B1D0D5A766B00DBA0E3 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -621,6 +619,8 @@
 		506EDAA3102F461B00A389B3 /* cocos2d Sources */ = {
 			isa = PBXGroup;
 			children = (
+				504DFC6810AF1739006D82FE /* LICENSE.cocos2d */,
+				504DFC6910AF1739006D82FE /* LICENSE.cocosdenshion */,
 				50D3B00911498A370002F919 /* cocos2d */,
 				502BC3541120837500A0B92A /* CocosDenshion */,
 				504DFBC710AF12E9006D82FE /* cocoslive */,

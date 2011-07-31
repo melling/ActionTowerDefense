@@ -10,6 +10,14 @@
 
 @class PlayGameWorldLayer;
 
+typedef enum {
+    kBuild,
+    kMove,
+    kProjectile,
+    kNet,
+    kHole
+} SelectedMenuItemToggleType;
+
 @interface PlayGameHudLayer : CCLayer
 {   
     CCLabel *melonsCollectedLabel;
@@ -22,19 +30,11 @@
     CCMenuItemToggle *netToggleItem;
     CCMenuItemToggle *holeToggleItem;
     
-    BOOL _isInMoveMode;
-    BOOL _isInProjectileMode;
-    BOOL _isInBuildMode;
-    BOOL _isInHoleMode;
-    BOOL _isInNetMode;
+    SelectedMenuItemToggleType _selectedMenuItemToggle;
 }
 
 @property (nonatomic, retain) PlayGameWorldLayer *gameLayer;
-@property (nonatomic, assign) BOOL isInMoveMode;
-@property (nonatomic, assign) BOOL isInProjectileMode;
-@property (nonatomic, assign) BOOL isInBuildMode;
-@property (nonatomic, assign) BOOL isInHoleMode;
-@property (nonatomic, assign) BOOL isInNetMode;
+@property (nonatomic, assign) SelectedMenuItemToggleType selectedMenuItemToggle;
 
 -(CCMenuItemToggle*)createToggleItem:(NSString*)onImageFile withOffImageFile:(NSString*)offImageFile withCallback:(SEL)callback;
 - (void)melonsCollectedChanged:(int)melonsCollected;

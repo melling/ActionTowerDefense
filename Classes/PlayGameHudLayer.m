@@ -16,11 +16,7 @@
 
 @implementation PlayGameHudLayer
 @synthesize gameLayer = _gameLayer;
-@synthesize isInMoveMode = _isInMoveMode;
-@synthesize isInProjectileMode = _isInProjectileMode;
-@synthesize isInBuildMode = _isInBuildMode;
-@synthesize isInHoleMode = _isInHoleMode;
-@synthesize isInNetMode = _isInNetMode;
+@synthesize selectedMenuItemToggle = _selectedMenuItemToggle;
 
 -(id) init
 {
@@ -47,7 +43,7 @@
                            withCallback: @selector(projectileButtonTapped:)
                            ];
 
-        self.isInProjectileMode = YES;
+        self.selectedMenuItemToggle = kProjectile;
         projectileToggleItem.selectedIndex = 1;
         
         // Setup move button.
@@ -99,11 +95,6 @@
 
 - (void)disableAllToggleButtons
 {
-    self.isInMoveMode = NO;
-    self.isInProjectileMode = NO;
-    self.isInBuildMode = NO;
-    self.isInHoleMode = NO;
-    self.isInNetMode = NO;
     buildToggleItem.selectedIndex = 0;
     projectileToggleItem.selectedIndex = 0;
     moveToggleItem.selectedIndex = 0;
@@ -114,35 +105,35 @@
 - (void)projectileButtonTapped:(id)sender
 {
     [self disableAllToggleButtons];
-    self.isInProjectileMode = YES;
+    self.selectedMenuItemToggle = kProjectile;
     projectileToggleItem.selectedIndex = 1;
 }
 
 - (void)buildButtonTapped:(id)sender
 {
     [self disableAllToggleButtons];
-    self.isInBuildMode = YES;
+    self.selectedMenuItemToggle = kBuild;
     buildToggleItem.selectedIndex = 1;
 }
 
 - (void)moveButtonTapped:(id)sender
 {
     [self disableAllToggleButtons];
-    self.isInMoveMode = YES;
+    self.selectedMenuItemToggle = kMove;
     moveToggleItem.selectedIndex = 1;
 }
 
 - (void)netButtonTapped:(id)sender
 {
     [self disableAllToggleButtons];
-    self.isInNetMode = YES;
+    self.selectedMenuItemToggle = kNet;
     netToggleItem.selectedIndex = 1;
 }
 
 - (void)holeButtonTapped:(id)sender
 {
     [self disableAllToggleButtons];
-    self.isInHoleMode = YES;
+    self.selectedMenuItemToggle = kHole;
     holeToggleItem.selectedIndex = 1;
 }
 
