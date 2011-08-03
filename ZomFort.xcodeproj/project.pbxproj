@@ -222,6 +222,11 @@
 		782800AC13A59F5300AEB9F2 /* net-button-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 782800A813A59F5300AEB9F2 /* net-button-on.png */; };
 		785100F213B9EC0000C97016 /* PlayGameWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 785100EF13B9EC0000C97016 /* PlayGameWorldLayer.m */; };
 		785100F313B9EC0000C97016 /* PlayGameHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 785100F113B9EC0000C97016 /* PlayGameHudLayer.m */; };
+		788DCBEC13EA128A0068C73A /* build-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBE713EA128A0068C73A /* build-button-disabled.png */; };
+		788DCBED13EA128A0068C73A /* hole-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBE813EA128A0068C73A /* hole-button-disabled.png */; };
+		788DCBEE13EA128A0068C73A /* move-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBE913EA128A0068C73A /* move-button-disabled.png */; };
+		788DCBEF13EA128A0068C73A /* net-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBEA13EA128A0068C73A /* net-button-disabled.png */; };
+		788DCBF013EA128A0068C73A /* projectile-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBEB13EA128A0068C73A /* projectile-button-disabled.png */; };
 		78A14B1513A6BED9002150C2 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1213A6BED9002150C2 /* bullet.png */; };
 		78A14B1613A6BED9002150C2 /* enemy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1313A6BED9002150C2 /* enemy2.png */; };
 		78A14B1713A6BED9002150C2 /* enemy3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1413A6BED9002150C2 /* enemy3.png */; };
@@ -467,6 +472,11 @@
 		785100EF13B9EC0000C97016 /* PlayGameWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameWorldLayer.m; sourceTree = "<group>"; };
 		785100F013B9EC0000C97016 /* PlayGameHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayGameHudLayer.h; sourceTree = "<group>"; };
 		785100F113B9EC0000C97016 /* PlayGameHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameHudLayer.m; sourceTree = "<group>"; };
+		788DCBE713EA128A0068C73A /* build-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-button-disabled.png"; sourceTree = "<group>"; };
+		788DCBE813EA128A0068C73A /* hole-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hole-button-disabled.png"; sourceTree = "<group>"; };
+		788DCBE913EA128A0068C73A /* move-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "move-button-disabled.png"; sourceTree = "<group>"; };
+		788DCBEA13EA128A0068C73A /* net-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net-button-disabled.png"; sourceTree = "<group>"; };
+		788DCBEB13EA128A0068C73A /* projectile-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile-button-disabled.png"; sourceTree = "<group>"; };
 		78A14B1213A6BED9002150C2 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		78A14B1313A6BED9002150C2 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
 		78A14B1413A6BED9002150C2 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
@@ -877,6 +887,11 @@
 				782800A513A59F5300AEB9F2 /* hole-button-off.png */,
 				782800A613A59F5300AEB9F2 /* hole-button-on.png */,
 				782800A713A59F5300AEB9F2 /* net-button-off.png */,
+				788DCBE713EA128A0068C73A /* build-button-disabled.png */,
+				788DCBE813EA128A0068C73A /* hole-button-disabled.png */,
+				788DCBE913EA128A0068C73A /* move-button-disabled.png */,
+				788DCBEA13EA128A0068C73A /* net-button-disabled.png */,
+				788DCBEB13EA128A0068C73A /* projectile-button-disabled.png */,
 				782800A813A59F5300AEB9F2 /* net-button-on.png */,
 				8206600B11C2F9C7007C230C /* projectile-button-off.png */,
 				8206600C11C2F9C7007C230C /* projectile-button-on.png */,
@@ -1086,6 +1101,11 @@
 				78A14B1613A6BED9002150C2 /* enemy2.png in Resources */,
 				78A14B1713A6BED9002150C2 /* enemy3.png in Resources */,
 				78B63BD313C3C57900D88149 /* explosion.caf in Resources */,
+				788DCBEC13EA128A0068C73A /* build-button-disabled.png in Resources */,
+				788DCBED13EA128A0068C73A /* hole-button-disabled.png in Resources */,
+				788DCBEE13EA128A0068C73A /* move-button-disabled.png in Resources */,
+				788DCBEF13EA128A0068C73A /* net-button-disabled.png in Resources */,
+				788DCBF013EA128A0068C73A /* projectile-button-disabled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

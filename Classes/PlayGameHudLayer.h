@@ -20,7 +20,7 @@ typedef enum {
 
 @interface PlayGameHudLayer : CCLayer
 {   
-    CCLabel *melonsCollectedLabel;
+    CCLabel *magicPowerCollectedLabel;
     CCLabel *scoreLabel;
 	PlayGameWorldLayer *_gameLayer;
     
@@ -36,8 +36,8 @@ typedef enum {
 @property (nonatomic, retain) PlayGameWorldLayer *gameLayer;
 @property (nonatomic, assign) SelectedMenuItemToggleType selectedMenuItemToggle;
 
--(CCMenuItemToggle*)createToggleItem:(NSString*)onImageFile withOffImageFile:(NSString*)offImageFile withCallback:(SEL)callback;
-- (void)melonsCollectedChanged:(int)melonsCollected;
+-(CCMenuItemToggle*)createToggleItem:(NSString*)onImageFile withOffImageFile:(NSString*)offImageFile withDisabledImageFile:(NSString*)disabledImageFile withCallback:(SEL)callback;
+- (void)magicPowerCollectedChanged:(int)magicPowerCollected;
 - (void)scoreChanged:(int)score;
-- (void)disableAllToggleButtons;
+- (void)deselectAllToggleButtons;
 @end

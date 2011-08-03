@@ -10,6 +10,8 @@
 #import "PlayGameHudLayer.h"
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
+
+
 #import "Monster.h"
 
 // Values for the Enemy property on a spawn point in the map to indicate a kind of enemy.
@@ -23,9 +25,10 @@
 #define kMapGIDForBlock 51
 #define kMapGIDForCollidable 57
 
-#define kPointsForCollectingMelon 1000
+#define kPointsForCollectingMagicPower 1000
 #define kPointsForKillingMonster 100
 #define kMonstersRemainingToWin 1
+#define kStartingMagicPower 15
 
 // PlayGameWorldLayer implementation
 @implementation PlayGameWorldLayer
@@ -35,7 +38,7 @@
 @synthesize traps = _traps;
 @synthesize meta = _meta;
 @synthesize player = _player;
-@synthesize melonsCollected = _melonsCollected;
+@synthesize magicPowerCollected = _magicPowerCollected;
 @synthesize score = _score;
 @synthesize hud = _hud;
 
@@ -55,6 +58,8 @@
     
     layer.hud = hud;
     hud.gameLayer = layer;
+    
+    [hud magicPowerCollectedChanged:layer.magicPowerCollected];
 	
 	// return the scene
 	return scene;
@@ -341,6 +346,7 @@
         self.meta = [_tileMap layerNamed:@"Meta"];
         _meta.visible = NO;
         
+        _magicPowerCollected = kStartingMagicPower;
         
         // Find spawn point x,y coordinates
         CCTMXObjectGroup *objects = [_tileMap objectGroupNamed:@"Objects"];
@@ -430,11 +436,11 @@
                 [_meta removeTileAt:tileCoord];
                 [_foreground removeTileAt:tileCoord];
                 
-                self.score += kPointsForCollectingMelon;
+                self.score += kPointsForCollectingMagicPower;
                 [_hud scoreChanged:_score];
                 
-                self.melonsCollected += 1;
-                [_hud melonsCollectedChanged:_melonsCollected];
+                self.magicPowerCollected += 1;
+                [_hud magicPowerCollectedChanged:_magicPowerCollected];
                 [[SimpleAudioEngine sharedEngine] playEffect:@"pickup.caf"];
 
             }
@@ -463,7 +469,7 @@
     CGPoint playerPos;
     CGPoint diff;
     CCSprite *projectile;
-    
+        
     switch ( _hud.selectedMenuItemToggle ) {      
         case kMove:
             
@@ -482,12 +488,12 @@
 				    playerPos.y -= _tileMap.tileSize.height;
 			    }
 		    }
-		    //player.position = playerPos; // Todo: Trymove
+
 		    [self setPlayerPosition:playerPos];
             
 		    [self setViewpointCenter:_player.position];
             
-            break;   
+            return;
             
         case kBuild:   
             
@@ -551,7 +557,12 @@
                 [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
             }      
             break;
-    }	
+    }
+	
+    // Moving player option returned by this part of the code. 
+    // Expend magic power to cast spells.
+    _magicPowerCollected--;
+    [_hud magicPowerCollectedChanged:_magicPowerCollected];
     
 }
 

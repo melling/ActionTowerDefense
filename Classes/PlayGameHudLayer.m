@@ -22,11 +22,11 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Setup score.
-        melonsCollectedLabel = [CCLabel labelWithString:@"Melons: 0" fontName:@"Verdana-Bold" fontSize:18.0];
-        melonsCollectedLabel.color = ccc3(255,255,255);
-        melonsCollectedLabel.anchorPoint = ccp(1, 1);
-        melonsCollectedLabel.position = ccp(winSize.width, winSize.height);
-        [self addChild:melonsCollectedLabel];
+        magicPowerCollectedLabel = [CCLabel labelWithString:@"Magic Power: 0" fontName:@"Verdana-Bold" fontSize:18.0];
+        magicPowerCollectedLabel.color = ccc3(255,255,255);
+        magicPowerCollectedLabel.anchorPoint = ccp(1, 1);
+        magicPowerCollectedLabel.position = ccp(winSize.width, winSize.height);
+        [self addChild:magicPowerCollectedLabel];
         
         scoreLabel = [CCLabel labelWithString:@"Score: 0" fontName:@"Verdana-Bold" fontSize:18.0];
         scoreLabel.color = ccc3(255,255,255);
@@ -38,6 +38,7 @@
 		projectileToggleItem = [self 
                                 createToggleItem: @"projectile-button-on.png" 
                                 withOffImageFile: @"projectile-button-off.png"
+                                withDisabledImageFile: @"projectile-button-disabled.png"
                                 withCallback: @selector(projectileButtonTapped:)
                                 ];
         
@@ -48,6 +49,7 @@
 		moveToggleItem = [self 
                           createToggleItem: @"move-button-on.png" 
                           withOffImageFile: @"move-button-off.png"
+                          withDisabledImageFile: @"move-button-disabled.png"
                           withCallback: @selector(moveButtonTapped:)
                           ];
         
@@ -55,6 +57,7 @@
 		buildToggleItem = [self 
                            createToggleItem: @"build-button-on.png" 
                            withOffImageFile: @"build-button-off.png"
+                           withDisabledImageFile: @"build-button-disabled.png"
                            withCallback: @selector(buildButtonTapped:)
                            ];
         
@@ -62,6 +65,7 @@
 		netToggleItem = [self 
                          createToggleItem: @"net-button-on.png" 
                          withOffImageFile: @"net-button-off.png"
+                         withDisabledImageFile: @"net-button-disabled.png"
                          withCallback: @selector(netButtonTapped:)
                          ];
         
@@ -69,6 +73,7 @@
 		holeToggleItem = [self 
                           createToggleItem: @"hole-button-on.png" 
                           withOffImageFile: @"hole-button-off.png"
+                          withDisabledImageFile: @"hole-button-disabled.png"
                           withCallback: @selector(holeButtonTapped:)
                           ];
         
@@ -80,18 +85,20 @@
     return self;
 }
 
--(CCMenuItemToggle*)createToggleItem:(NSString*)onImageFile withOffImageFile:(NSString*)offImageFile withCallback:(SEL)callback
+-(CCMenuItemToggle*)createToggleItem:(NSString*)onImageFile withOffImageFile:(NSString*)offImageFile withDisabledImageFile:(NSString*)disabledImageFile withCallback:(SEL)callback
 {
     CCMenuItem *buildOn = [[CCMenuItemImage itemFromNormalImage:onImageFile 
                                                   selectedImage:onImageFile target:nil selector:nil] retain];
     CCMenuItem *buildOff = [[CCMenuItemImage itemFromNormalImage:offImageFile 
                                                    selectedImage:offImageFile target:nil selector:nil] retain];
+    CCMenuItem *buildDisabled = [[CCMenuItemImage itemFromNormalImage:disabledImageFile 
+                                                   selectedImage:disabledImageFile target:nil selector:nil] retain];
     CCMenuItemToggle *createdToggleItem = [CCMenuItemToggle itemWithTarget:self 
-                                                                  selector:callback items:buildOff, buildOn, nil];  
+                                                                  selector:callback items:buildOff, buildOn, buildDisabled, nil];  
     return createdToggleItem;
 }
 
-- (void)disableAllToggleButtons
+- (void)deselectAllToggleButtons
 {
     buildToggleItem.selectedIndex = 0;
     projectileToggleItem.selectedIndex = 0;
@@ -102,41 +109,64 @@
 
 - (void)projectileButtonTapped:(id)sender
 {
-    [self disableAllToggleButtons];
+    [self deselectAllToggleButtons];
     self.selectedMenuItemToggle = kProjectile;
     projectileToggleItem.selectedIndex = 1;
 }
 
 - (void)buildButtonTapped:(id)sender
 {
-    [self disableAllToggleButtons];
+    [self deselectAllToggleButtons];
     self.selectedMenuItemToggle = kBuild;
     buildToggleItem.selectedIndex = 1;
 }
 
 - (void)moveButtonTapped:(id)sender
 {
-    [self disableAllToggleButtons];
+    [self deselectAllToggleButtons];
     self.selectedMenuItemToggle = kMove;
     moveToggleItem.selectedIndex = 1;
 }
 
 - (void)netButtonTapped:(id)sender
 {
-    [self disableAllToggleButtons];
+    [self deselectAllToggleButtons];
     self.selectedMenuItemToggle = kNet;
     netToggleItem.selectedIndex = 1;
 }
 
 - (void)holeButtonTapped:(id)sender
 {
-    [self disableAllToggleButtons];
+    [self deselectAllToggleButtons];
     self.selectedMenuItemToggle = kHole;
     holeToggleItem.selectedIndex = 1;
 }
 
-- (void)melonsCollectedChanged:(int)melonsCollected {
-    [melonsCollectedLabel setString:[NSString stringWithFormat:@"Melons: %d", melonsCollected]];
+- (void)magicPowerCollectedChanged:(int)magicPowerCollected {
+    [magicPowerCollectedLabel setString:[NSString stringWithFormat:@"Magic Power: %d", magicPowerCollected]];
+    
+    if ( magicPowerCollected <= 0 ) {
+        [self moveButtonTapped:nil];
+        
+        [buildToggleItem setIsEnabled:FALSE];
+        [projectileToggleItem setIsEnabled:FALSE];
+        [holeToggleItem setIsEnabled:FALSE];
+        [netToggleItem setIsEnabled:FALSE];    
+        buildToggleItem.selectedIndex = 2;
+        projectileToggleItem.selectedIndex = 2;
+        holeToggleItem.selectedIndex = 2;
+        netToggleItem.selectedIndex = 2;
+    } else {
+        
+        [buildToggleItem setIsEnabled:TRUE];
+        [projectileToggleItem setIsEnabled:TRUE];
+        [holeToggleItem setIsEnabled:TRUE];
+        [netToggleItem setIsEnabled:TRUE];
+        buildToggleItem.selectedIndex = 0;
+        projectileToggleItem.selectedIndex = 0;
+        holeToggleItem.selectedIndex = 0;
+        netToggleItem.selectedIndex = 0;
+    }
 }
 
 - (void)scoreChanged:(int)score {

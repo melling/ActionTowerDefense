@@ -20,7 +20,7 @@
     CCTMXLayer *_traps;    
     
     CCSprite *_player;
-    int _melonsCollected;
+    int _magicPowerCollected;
     int _score;
     int _monstersLeftToKill;
     PlayGameHudLayer *_hud;
@@ -35,7 +35,7 @@
 @property (nonatomic, retain) CCTMXLayer *meta;
 @property (nonatomic, retain) CCTMXLayer *traps;
 @property (nonatomic, retain) CCSprite *player;
-@property (nonatomic, assign) int melonsCollected;
+@property (nonatomic, assign) int magicPowerCollected;
 @property (nonatomic, assign) int score;
 @property (nonatomic, retain) PlayGameHudLayer *hud;
 
