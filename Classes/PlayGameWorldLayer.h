@@ -22,6 +22,7 @@
     CCSprite *_player;
     int _melonsCollected;
     int _score;
+    int _monstersLeftToKill;
     PlayGameHudLayer *_hud;
     
 	NSMutableArray *_enemies;

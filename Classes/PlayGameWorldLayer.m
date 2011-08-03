@@ -6,14 +6,11 @@
 //  Copyright h4labs 2011. All rights reserved.
 //
 
-// Import the interfaces
 #import "PlayGameWorldLayer.h"
 #import "PlayGameHudLayer.h"
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
 #import "Monster.h"
-
-#define kMelonsNeededToWin 2
 
 // Values for the Enemy property on a spawn point in the map to indicate a kind of enemy.
 // TODO cleaner to just use class name as property value?
@@ -28,6 +25,7 @@
 
 #define kPointsForCollectingMelon 1000
 #define kPointsForKillingMonster 100
+#define kMonstersRemainingToWin 1
 
 // PlayGameWorldLayer implementation
 @implementation PlayGameWorldLayer
@@ -206,6 +204,18 @@
 	[[CCDirector sharedDirector] replaceScene:gameOverScene];
 }
 
+- (void)killMonster:(CCSprite *)target  {
+    [_enemies removeObject:target];
+    [self removeChild:target cleanup:YES];	
+    
+    self.score += kPointsForKillingMonster;
+    [_hud scoreChanged:_score];
+    _monstersLeftToKill--;
+    
+    if (_monstersLeftToKill - kMonstersRemainingToWin <= 0){
+        [self win];
+    }    
+}
 - (void)testCollisions:(ccTime)dt {
     for (CCSprite *target in _enemies) {
         CGRect targetRect = CGRectMake(
@@ -254,11 +264,7 @@
         
         // delete all hit enemies
         for (CCSprite *target in targetsToDelete) {
-            [_enemies removeObject:target];
-            [self removeChild:target cleanup:YES];	
-            
-            self.score += kPointsForKillingMonster;
-            [_hud scoreChanged:_score];
+            [self killMonster: target];
         }
         
         if (monsterHit) {    
@@ -308,11 +314,7 @@
     
     // delete all trapped enemies
 	for (CCSprite *target in targetsToDelete) {
-        [_enemies removeObject:target];
-        [self removeChild:target cleanup:YES];			
-        
-        self.score += kPointsForKillingMonster;
-        [_hud scoreChanged:_score];
+        [self killMonster: target];
     }    
     [targetsToDelete release];
     
@@ -339,6 +341,7 @@
         self.meta = [_tileMap layerNamed:@"Meta"];
         _meta.visible = NO;
         
+        
         // Find spawn point x,y coordinates
         CCTMXObjectGroup *objects = [_tileMap objectGroupNamed:@"Objects"];
         NSMutableDictionary *spawnPoints = [objects objectNamed:@"SpawnPoint"];
@@ -350,14 +353,14 @@
         self.player = [CCSprite spriteWithFile:@"Player.png"];
         _player.position = ccp(x, y);
         [self addChild:_player]; 
-		
-		
+        
 		//after creating the player
 		//iterate through objects, finding all enemy spawn points and creating enemies.
 		NSMutableDictionary * spawnPoint;
 		
 		_enemies = [[NSMutableArray alloc] init];
 		_projectiles = [[NSMutableArray alloc] init];
+        _monstersLeftToKill = 0;
 		for (spawnPoint in [objects objects]) {
             
             // Read optional number of enemies to spawn property.
@@ -366,6 +369,7 @@
                 // Spawn 1 enemy if nothing set.
                 numberOfEnemiesToSpawn = 1;
             }
+            _monstersLeftToKill += numberOfEnemiesToSpawn;
             
             // Read optional property for how long to wait before spawning each enemy.
             float SpawnDelaySeconds = [[spawnPoint valueForKey:@"SpawnDelaySeconds"] intValue];
@@ -432,9 +436,7 @@
                 self.melonsCollected += 1;
                 [_hud melonsCollectedChanged:_melonsCollected];
                 [[SimpleAudioEngine sharedEngine] playEffect:@"pickup.caf"];
-				if (_melonsCollected == kMelonsNeededToWin){
-					[self win];
-				}
+
             }
         }
     }
