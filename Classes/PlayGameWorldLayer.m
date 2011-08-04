@@ -29,6 +29,7 @@
 #define kPointsForKillingMonster 100
 #define kMonstersRemainingToWin 1
 #define kStartingMagicPower 15
+#define kSecondsConjuredBlocksLast 5
 
 // PlayGameWorldLayer implementation
 @implementation PlayGameWorldLayer
@@ -170,6 +171,14 @@
     [self animateEnemy: enemy]; 
 }
 
+-(void)removeBlockAt:(id)sender data:(id)tileCoordValue {
+
+    CGPoint tileCoord = [tileCoordValue CGPointValue];
+    [_traps removeTileAt:tileCoord];
+    [_meta removeTileAt:tileCoord];
+    
+    [tileCoordValue release];
+}
 
 -(void)addEnemyAtSpawnPoint:(id)sender data:(id)spawnPoint {
     int enemyKind = [[spawnPoint valueForKey:@"Enemy"] intValue];
@@ -501,6 +510,17 @@
                 [_traps setTileGID:kMapGIDForBlock at:tileCoord];
                 [_meta setTileGID:kMapGIDForCollidable at:tileCoord];
             }
+            
+            //Remove block after a delay
+            NSValue *tileCoordValue = [NSValue valueWithCGPoint:tileCoord];
+            [tileCoordValue retain];
+            id actionRemoveBlock = [CCCallFuncND actionWithTarget:self
+                                                      selector:@selector(removeBlockAt:data:) data:tileCoordValue];
+            id actionDelay = [CCDelayTime actionWithDuration:kSecondsConjuredBlocksLast];
+            id actionRemoveBlockDelayed = [CCSequence actions: actionDelay, actionRemoveBlock, nil];
+            
+            // Run the action.
+            [_player runAction:actionRemoveBlockDelayed]; 
             
             break;
             
