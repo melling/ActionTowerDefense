@@ -27,6 +27,10 @@
     
 	NSMutableArray *_enemies;
 	NSMutableArray *_projectiles;
+    
+    BOOL _isPlayerMoving;
+    BOOL _isTouchInProgress;
+    CGPoint _currentTouchLocation;
 }
 
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;

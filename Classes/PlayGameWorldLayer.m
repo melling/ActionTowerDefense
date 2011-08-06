@@ -31,6 +31,10 @@
 #define kStartingMagicPower 15
 #define kSecondsConjuredBlocksLast 5
 
+@interface PlayGameWorldLayer (Private)
+    - (void)setPlayerPosition:(CGPoint)position;
+@end
+
 // PlayGameWorldLayer implementation
 @implementation PlayGameWorldLayer
 @synthesize tileMap = _tileMap;
@@ -105,6 +109,15 @@
     return FALSE;
 }
 
+-(bool) isOnMap:(CGPoint)tileCoord
+{
+    return tileCoord.x < _tileMap.mapSize.width 
+        && tileCoord.y < _tileMap.mapSize.height 
+        && tileCoord.x >=0 
+        && tileCoord.y >=0;
+        
+}
+
 -(void) animateEnemy:(Monster*)enemy
 { 
     // Move toward the player
@@ -118,7 +131,7 @@
         CGPoint tileCoord = [self tileCoordForPosition:newPosition];
         
         // If the enemy is on the map.
-        if (tileCoord.x < _tileMap.mapSize.width && tileCoord.y < _tileMap.mapSize.height && tileCoord.x >=0 && tileCoord.y >=0 ) {
+        if ([self isOnMap:tileCoord]) {
             
             // If not a hole trap at this map location
             int tileGid = [_traps tileGIDAt:tileCoord];
@@ -423,14 +436,71 @@
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+-(void)processMoveTouchIfNeeded {
+    // If there isn't any touch in progress, or if the player is already moving, don't move more.
+    if ( !_isTouchInProgress || _isPlayerMoving ) {
+        return;
+    }
+    
+    CGPoint touchLocation = _currentTouchLocation;
+    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    CGPoint playerPos;
+    CGPoint diff;
+    
+    switch ( _hud.selectedMenuItemToggle ) {      
+        case kMove:
+            
+		    playerPos = _player.position;
+		    diff = ccpSub(touchLocation, playerPos);
+		    if (abs(diff.x) > abs(diff.y)) {
+		    	if (diff.x > 0) {
+		    		playerPos.x += _tileMap.tileSize.width;
+		    	} else {
+			    	playerPos.x -= _tileMap.tileSize.width; 
+		    	}    
+		    } else {
+		    	if (diff.y > 0) {
+			    	playerPos.y += _tileMap.tileSize.height;
+		    	} else {
+				    playerPos.y -= _tileMap.tileSize.height;
+			    }
+		    }
+            
+		    [self setPlayerPosition:playerPos];
+            
+		    [self setViewpointCenter:_player.position];
+            
+            break;
+        default:
+            break;
+    }
+}
+
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    // Keep track of the current touch, so that the user can move by holding a finger down.
+    _isTouchInProgress = TRUE;
+    _currentTouchLocation = [touch locationInView: [touch view]];		
+
+    [self processMoveTouchIfNeeded];
+    
 	return YES;
 }
 
 -(void)setPlayerPosition:(CGPoint)position {
     
+    if ( _isPlayerMoving ) {
+        return;
+    }
+    
     CGPoint tileCoord = [self tileCoordForPosition:position];
+    // Fix crash when player moved off map.
+    if (![self isOnMap:tileCoord]) {
+        return;
+    }
+    
     int tileGid = [_meta tileGIDAt:tileCoord];
     if (tileGid) {
         NSDictionary *properties = [_tileMap propertiesForGID:tileGid];
@@ -458,7 +528,19 @@
     [[SimpleAudioEngine sharedEngine] playEffect:@"move.caf"];
     
     // Smoother player movement than immediate _player.position = position;
-    [_player runAction: [CCMoveTo actionWithDuration: 0.25 position: position]];
+    
+    id actionMove = [CCMoveTo actionWithDuration: 0.25 position: position];
+    id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(playerMoveFinished:)];
+    id actionSequence = [CCSequence actions:actionMove, actionMoveDone, nil];     
+    _isPlayerMoving = TRUE;
+    [_player runAction: actionSequence];
+}
+
+-(void)playerMoveFinished:(id)sender {
+    _isPlayerMoving = FALSE;
+    
+    // Move again if the user still has their finger down.
+    [self processMoveTouchIfNeeded];
 }
 
 -(void)projectileMoveFinished:(id)sender {
@@ -467,41 +549,30 @@
     [_projectiles removeObject:sprite];
 }
 
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    // Keep track of the current touch, so that the user can move by holding a finger down.
+    _isTouchInProgress = TRUE;
+    _currentTouchLocation = [touch locationInView: [touch view]];		
+    
+    [self processMoveTouchIfNeeded];    
+}
+
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    _isTouchInProgress = FALSE;   
     
     CGPoint touchLocation = [touch locationInView: [touch view]];		
     touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
     touchLocation = [self convertToNodeSpace:touchLocation];
     CGPoint tileCoord = [self tileCoordForPosition:touchLocation];
     
-    CGPoint playerPos;
-    CGPoint diff;
     CCSprite *projectile;
         
     switch ( _hud.selectedMenuItemToggle ) {      
         case kMove:
             
-		    playerPos = _player.position;
-		    diff = ccpSub(touchLocation, playerPos);
-		    if (abs(diff.x) > abs(diff.y)) {
-		    	if (diff.x > 0) {
-		    		playerPos.x += _tileMap.tileSize.width;
-		    	} else {
-			    	playerPos.x -= _tileMap.tileSize.width; 
-		    	}    
-		    } else {
-		    	if (diff.y > 0) {
-			    	playerPos.y += _tileMap.tileSize.height;
-		    	} else {
-				    playerPos.y -= _tileMap.tileSize.height;
-			    }
-		    }
-
-		    [self setPlayerPosition:playerPos];
-            
-		    [self setViewpointCenter:_player.position];
-            
+            // Already handled during the touch.
             return;
             
         case kBuild:   

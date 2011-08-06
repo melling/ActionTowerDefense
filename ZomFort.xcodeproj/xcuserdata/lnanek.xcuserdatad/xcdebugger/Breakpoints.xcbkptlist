@@ -51,26 +51,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/PlayGameWorldLayer.m"
-         timestampString = "334110012.899397"
+         timestampString = "334280557.705728"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "63"
-         endingLineNumber = "63"
+         startingLineNumber = "67"
+         endingLineNumber = "67"
          landmarkName = "+scene"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/PlayGameWorldLayer.m"
-         timestampString = "334110728.668217"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "221"
-         endingLineNumber = "221"
-         landmarkName = "-killMonster:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
