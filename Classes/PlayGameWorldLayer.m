@@ -157,20 +157,25 @@
     [enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]]; 
 }
 
+-(void)setRotationByDelta:(CCSprite*)sprite start:(CGPoint)start end:(CGPoint)end {
+    CGPoint diff = ccpSub(end,start);
+    float angleRadians = atanf((float)diff.y / (float)diff.x);
+    float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
+    float cocosAngle = -1 * angleDegrees;
+    if (diff.x < 0){
+        cocosAngle += 180;
+    }
+    sprite.rotation = cocosAngle;
+}
+
 -(void)enemyMoveFinished:(id)sender {
 	Monster *enemy = (Monster *)sender;
     
     // Check enemy type, flying ones rotate to face player.
     if ( enemy.isFlying ) {
         
-        CGPoint diff = ccpSub(_player.position,enemy.position);
-        float angleRadians = atanf((float)diff.y / (float)diff.x);
-        float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
-        float cocosAngle = -1 * angleDegrees;
-        if (diff.x < 0){
-            cocosAngle += 180;
-        }
-        enemy.rotation = cocosAngle;
+        [self setRotationByDelta:enemy start:enemy.position end:_player.position];
+
         // Walking enemies flip horizontally to face player.
     } else {
         CGPoint diff = ccpSub(_player.position,enemy.position);
@@ -619,6 +624,8 @@
             float ratio = (float) diff.y / (float) diff.x;
             int realY = ((realX - projectile.position.x) * ratio) + projectile.position.y;
             CGPoint realDest = ccp(realX, realY);
+            
+            [self setRotationByDelta:projectile start:_player.position end:realDest];
             
             // Determine the length of how far we're shooting
             int offRealX = realX - projectile.position.x;
