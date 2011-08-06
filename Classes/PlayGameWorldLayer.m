@@ -454,13 +454,16 @@
             
 		    playerPos = _player.position;
 		    diff = ccpSub(touchLocation, playerPos);
-		    if (abs(diff.x) > abs(diff.y)) {
+            
+		    if ( abs(diff.x) > _tileMap.tileSize.width ) {
 		    	if (diff.x > 0) {
 		    		playerPos.x += _tileMap.tileSize.width;
 		    	} else {
 			    	playerPos.x -= _tileMap.tileSize.width; 
 		    	}    
-		    } else {
+		    }
+            
+		    if ( abs(diff.y) > _tileMap.tileSize.height ) {
 		    	if (diff.y > 0) {
 			    	playerPos.y += _tileMap.tileSize.height;
 		    	} else {
