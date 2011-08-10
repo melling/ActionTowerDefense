@@ -227,6 +227,9 @@
 		788DCBEE13EA128A0068C73A /* move-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBE913EA128A0068C73A /* move-button-disabled.png */; };
 		788DCBEF13EA128A0068C73A /* net-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBEA13EA128A0068C73A /* net-button-disabled.png */; };
 		788DCBF013EA128A0068C73A /* projectile-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBEB13EA128A0068C73A /* projectile-button-disabled.png */; };
+		788DCBF413F2C6D00068C73A /* TitleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 788DCBF313F2C6CF0068C73A /* TitleScene.m */; };
+		788DCBFC13F2EE870068C73A /* abergelecastle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 788DCBFB13F2EE870068C73A /* abergelecastle.jpg */; };
+		788DCBFF13F2EEC00068C73A /* CCSpriteExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 788DCBFE13F2EEC00068C73A /* CCSpriteExtensions.m */; };
 		78A14B1513A6BED9002150C2 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1213A6BED9002150C2 /* bullet.png */; };
 		78A14B1613A6BED9002150C2 /* enemy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1313A6BED9002150C2 /* enemy2.png */; };
 		78A14B1713A6BED9002150C2 /* enemy3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A14B1413A6BED9002150C2 /* enemy3.png */; };
@@ -477,6 +480,11 @@
 		788DCBE913EA128A0068C73A /* move-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "move-button-disabled.png"; sourceTree = "<group>"; };
 		788DCBEA13EA128A0068C73A /* net-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "net-button-disabled.png"; sourceTree = "<group>"; };
 		788DCBEB13EA128A0068C73A /* projectile-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile-button-disabled.png"; sourceTree = "<group>"; };
+		788DCBF213F2C6CF0068C73A /* TitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleScene.h; sourceTree = "<group>"; };
+		788DCBF313F2C6CF0068C73A /* TitleScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleScene.m; sourceTree = "<group>"; };
+		788DCBFB13F2EE870068C73A /* abergelecastle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abergelecastle.jpg; sourceTree = "<group>"; };
+		788DCBFD13F2EEC00068C73A /* CCSpriteExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteExtensions.h; sourceTree = "<group>"; };
+		788DCBFE13F2EEC00068C73A /* CCSpriteExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSpriteExtensions.m; sourceTree = "<group>"; };
 		78A14B1213A6BED9002150C2 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		78A14B1313A6BED9002150C2 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
 		78A14B1413A6BED9002150C2 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
@@ -592,6 +600,10 @@
 				82FA363811CD94540071117A /* GameOverScene.m */,
 				1F3B9A2C0EF2145700286867 /* ZomFortAppDelegate.h */,
 				1F3B9A2B0EF2145700286867 /* ZomFortAppDelegate.m */,
+				788DCBF213F2C6CF0068C73A /* TitleScene.h */,
+				788DCBFD13F2EEC00068C73A /* CCSpriteExtensions.h */,
+				788DCBFE13F2EEC00068C73A /* CCSpriteExtensions.m */,
+				788DCBF313F2C6CF0068C73A /* TitleScene.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -860,6 +872,7 @@
 			children = (
 				782800A313A59F0400AEB9F2 /* Buttons */,
 				78A14B1213A6BED9002150C2 /* bullet.png */,
+				788DCBFB13F2EE870068C73A /* abergelecastle.jpg */,
 				78A14B1313A6BED9002150C2 /* enemy2.png */,
 				78A14B1413A6BED9002150C2 /* enemy3.png */,
 				78B63BD213C3C57900D88149 /* explosion.caf */,
@@ -1106,6 +1119,7 @@
 				788DCBEE13EA128A0068C73A /* move-button-disabled.png in Resources */,
 				788DCBEF13EA128A0068C73A /* net-button-disabled.png in Resources */,
 				788DCBF013EA128A0068C73A /* projectile-button-disabled.png in Resources */,
+				788DCBFC13F2EE870068C73A /* abergelecastle.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,6 +1136,8 @@
 				785100F213B9EC0000C97016 /* PlayGameWorldLayer.m in Sources */,
 				785100F313B9EC0000C97016 /* PlayGameHudLayer.m in Sources */,
 				78B63BD013C3B13000D88149 /* Monster.m in Sources */,
+				788DCBF413F2C6D00068C73A /* TitleScene.m in Sources */,
+				788DCBFF13F2EEC00068C73A /* CCSpriteExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

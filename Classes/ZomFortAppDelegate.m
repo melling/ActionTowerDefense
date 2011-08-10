@@ -8,7 +8,7 @@
 
 #import "ZomFortAppDelegate.h"
 #import "cocos2d.h"
-#import "PlayGameWorldLayer.h"
+#import "TitleScene.h"
 
 @implementation ZomFortAppDelegate
 
@@ -51,7 +51,7 @@
 	[window makeKeyAndVisible];		
     
     
-	[[CCDirector sharedDirector] runWithScene: [PlayGameWorldLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [TitleSceneLayer node]];
 }
 
 
