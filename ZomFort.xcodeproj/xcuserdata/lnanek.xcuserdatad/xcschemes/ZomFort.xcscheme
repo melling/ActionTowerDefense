@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+               BlueprintIdentifier = "787E461E14090E080041D0F4"
                BuildableName = "ZomFort.app"
                BlueprintName = "ZomFort"
                ReferencedContainer = "container:ZomFort.xcodeproj">
@@ -32,15 +32,13 @@
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BlueprintIdentifier = "787E461E14090E080041D0F4"
             BuildableName = "ZomFort.app"
             BlueprintName = "ZomFort"
             ReferencedContainer = "container:ZomFort.xcodeproj">
@@ -50,8 +48,6 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -59,7 +55,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BlueprintIdentifier = "787E461E14090E080041D0F4"
             BuildableName = "ZomFort.app"
             BlueprintName = "ZomFort"
             ReferencedContainer = "container:ZomFort.xcodeproj">

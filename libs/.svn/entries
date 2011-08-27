@@ -1,43 +1,0 @@
-8
-
-dir
-300
-http://bcam@HaikuServe.local/hsi_svn/hsi_gnl/cocosTutorial/TileGame/libs
-http://bcam@HaikuServe.local/hsi_svn/hsi_gnl
-
-
-
-2010-06-23T00:52:29.907588Z
-300
-bcam
-
-
-svn:special svn:externals svn:needs-lock
-
-cocoslive
-dir
-
-FontLabel
-dir
-
-cocos2d
-dir
-
-TouchJSON
-dir
-
-README
-file
-
-
-
-
-2010-05-18T20:51:00.000000Z
-7baba416cdc29ca309c145cfd6e88f8b
-2010-06-23T00:52:29.907588Z
-300
-bcam
-
-CocosDenshion
-dir
-
