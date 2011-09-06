@@ -125,7 +125,6 @@
 		787E47A414090EFD0041D0F4 /* PlayGameWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787E479814090EFD0041D0F4 /* PlayGameWorldLayer.m */; };
 		787E47A514090EFD0041D0F4 /* PlayGameHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787E479A14090EFD0041D0F4 /* PlayGameHudLayer.m */; };
 		787E47A614090EFD0041D0F4 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 787E479C14090EFD0041D0F4 /* GameOverScene.m */; };
-		787E47A714090EFD0041D0F4 /* ZomFortAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 787E479E14090EFD0041D0F4 /* ZomFortAppDelegate.m */; };
 		787E47A814090EFD0041D0F4 /* CCSpriteExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 787E47A114090EFD0041D0F4 /* CCSpriteExtensions.m */; };
 		787E47A914090EFD0041D0F4 /* TitleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 787E47A214090EFD0041D0F4 /* TitleScene.m */; };
 		787E47C014090F570041D0F4 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 787E47AB14090F570041D0F4 /* bullet.png */; };
@@ -406,8 +405,6 @@
 		787E479A14090EFD0041D0F4 /* PlayGameHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameHudLayer.m; sourceTree = "<group>"; };
 		787E479B14090EFD0041D0F4 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		787E479C14090EFD0041D0F4 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
-		787E479D14090EFD0041D0F4 /* ZomFortAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZomFortAppDelegate.h; sourceTree = "<group>"; };
-		787E479E14090EFD0041D0F4 /* ZomFortAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZomFortAppDelegate.m; sourceTree = "<group>"; };
 		787E479F14090EFD0041D0F4 /* TitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleScene.h; sourceTree = "<group>"; };
 		787E47A014090EFD0041D0F4 /* CCSpriteExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteExtensions.h; sourceTree = "<group>"; };
 		787E47A114090EFD0041D0F4 /* CCSpriteExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSpriteExtensions.m; sourceTree = "<group>"; };
@@ -855,8 +852,6 @@
 				787E479A14090EFD0041D0F4 /* PlayGameHudLayer.m */,
 				787E479B14090EFD0041D0F4 /* GameOverScene.h */,
 				787E479C14090EFD0041D0F4 /* GameOverScene.m */,
-				787E479D14090EFD0041D0F4 /* ZomFortAppDelegate.h */,
-				787E479E14090EFD0041D0F4 /* ZomFortAppDelegate.m */,
 				787E479F14090EFD0041D0F4 /* TitleScene.h */,
 				787E47A014090EFD0041D0F4 /* CCSpriteExtensions.h */,
 				787E47A114090EFD0041D0F4 /* CCSpriteExtensions.m */,
@@ -1123,7 +1118,6 @@
 				787E47A414090EFD0041D0F4 /* PlayGameWorldLayer.m in Sources */,
 				787E47A514090EFD0041D0F4 /* PlayGameHudLayer.m in Sources */,
 				787E47A614090EFD0041D0F4 /* GameOverScene.m in Sources */,
-				787E47A714090EFD0041D0F4 /* ZomFortAppDelegate.m in Sources */,
 				787E47A814090EFD0041D0F4 /* CCSpriteExtensions.m in Sources */,
 				787E47A914090EFD0041D0F4 /* TitleScene.m in Sources */,
 			);
@@ -1219,6 +1213,7 @@
 				787E479314090E1C0041D0F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
